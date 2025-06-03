@@ -91,10 +91,32 @@
       margin-bottom: 1rem;
       font-size: 2.5rem;
     }
-    section img {
+    .image-grid {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .image-grid img {
+      flex: 1 1 calc(25% - 1.5rem);
+      max-width: calc(25% - 1.5rem);
+      border-radius: 1rem;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+    }
+    .image-grid img:hover {
+      transform: scale(1.03);
+    }
+    section img.full {
       max-width: 100%;
       margin-top: 2rem;
       border-radius: 1rem;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+    }
+    section img.full:hover {
+      transform: scale(1.03);
     }
   </style>
 </head>
@@ -118,31 +140,24 @@
       <li><strong>VuneCoin:</strong> Krypto-Zahlung, Blockchain-Vertrauen, NFT-basierte Verifizierung</li>
       <li><strong>Vuneco:</strong> Softwareentwicklung, KI-Lösungen, Plattform-Architektur</li>
     </ul>
-    <img src="assets/mockup-leylix.jpg" alt="Leylix App Vorschau">
+    <div class="image-grid">
+      <img src="assets/mockup-leylix.jpg" alt="Leylix App Vorschau">
+      <img src="assets/mockup-vunecoin.jpg" alt="VuneCoin Blockchain System">
+      <img src="assets/mockup-sponsor.jpg" alt="Sponsoring in der App">
+      <img src="assets/mockup-location.jpg" alt="Locationübersicht Leylix">
+    </div>
   </section>
 
   <section>
     <h2>VuneCoin – Die Währung für Events & Zukunft</h2>
     <p>Mit VuneCoin kannst du Events sponsern, Tickets kaufen und digitale Güter sicher handeln – alles über unsere eigene, schnelle Blockchain. Die perfekte Lösung für moderne Event-Plattformen.</p>
-    <img src="assets/icon-crypto.png" alt="VuneCoin Symbol">
+    <img class="full" src="assets/icon-crypto.png" alt="VuneCoin Symbol">
   </section>
 
   <section>
     <h2>Entwickelt von Vuneco</h2>
     <p>Vuneco ist ein innovatives Softwareunternehmen aus NRW. Mit Fokus auf App-Entwicklung, künstliche Intelligenz, Blockchain-Integrationen und UX-Design schaffen wir Systeme mit echtem Mehrwert – wie Leylix oder VuneCoin.</p>
-    <img src="assets/logo-vuneco.png" alt="Vuneco Logo">
-  </section>
-
-  <section>
-    <h2>Ein Blick auf die App</h2>
-    <p>Hier siehst du eine visuelle Vorschau der Leylix App mit Ticketverkauf, Event-Kalender, Sponsoring-Tools und Wallet-Verknüpfung.</p>
-    <img src="assets/leylix-app-preview.jpg" alt="Leylix App Interface">
-  </section>
-
-  <section>
-    <h2>VuneCoin im Einsatz</h2>
-    <p>Diese Grafik zeigt die Nutzung von VuneCoin im Alltag: Bezahlen, Verifizieren, Events erleben.</p>
-    <img src="assets/vunecoin-nutzung.png" alt="VuneCoin im Alltag">
+    <img class="full" src="assets/logo-vuneco.png" alt="Vuneco Logo">
   </section>
 
   <section>
