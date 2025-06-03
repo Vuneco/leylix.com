@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://seo.leylix.com/sitemap.xml
