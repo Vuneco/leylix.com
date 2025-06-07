@@ -303,6 +303,39 @@ header img {
       <a href="https://elion.vuneco.com" target="_blank">Elion öffnen</a>
     </div>
   </section>
+
+<section>
+  <h2>Lade unsere Apps herunter</h2>
+  <p>Tippe auf eine App – du wirst automatisch zum richtigen Store weitergeleitet.</p>
+  <div class="app-icons">
+    <img src="assets/leylix-app.png" alt="Leylix App" onclick="redirectToStore('leylix')" />
+    <img src="assets/vunecoin-app.png" alt="VuneCoin App" onclick="redirectToStore('vunecoin')" />
+  </div>
+</section>
+
+<script>
+function redirectToStore(app) {
+  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+  const isAndroid = /android/i.test(userAgent);
+  const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+
+  const links = {
+    leylix: {
+      android: "https://play.google.com/store/apps/details?id=com.leylix",
+      ios: "https://apps.apple.com/app/leylix/id123456789"
+    },
+    vunecoin: {
+      android: "https://play.google.com/store/apps/details?id=com.vunecoin",
+      ios: "https://apps.apple.com/app/vunecoin/id987654321"
+    }
+  };
+
+  const target = isIOS ? links[app].ios : links[app].android;
+  window.open(target, "_blank");
+}
+</script>
+
+  
   <script src="https://unpkg.com/@studio-freight/lenis@1.0.18/bundled/lenis.min.js"></script>
 <script>
   const lenis = new Lenis({
