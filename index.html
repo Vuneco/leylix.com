@@ -307,9 +307,6 @@ header img {
     right: 20px;
   }
 }
-
-
-
     
   </style>
 </head>
@@ -338,12 +335,12 @@ header img {
       <li><strong>Vuneco:</strong> Softwareentwicklung, KI-Lösungen, Plattform-Architektur</li>
     </ul>
     <div class="image-grid">
-  <img src="assets/LeylixWeb.png" alt="Leylix App Vorschau zur Ticketbuchung und Eventverwaltung in NRW" class="platform-image">
-<img src="assets/Leylix-Home.png" alt="VuneCoin Blockchain System" class="platform-image">
-<img src="assets/VuneCoinWallet.png" alt="Sponsoring in der Leylix App" class="platform-image">
-<img src="assets/mockup-location.jpg" alt="Locationübersicht Leylix" class="platform-image">
-
-</div>
+      <img src="assets/LeylixWeb.png" alt="Leylix App Vorschau zur Ticketbuchung und Eventverwaltung in NRW" class="platform-image">
+      <img src="assets/Leylix-Home.png" alt="VuneCoin Blockchain System" class="platform-image">
+      <img src="assets/VuneCoinWallet.png" alt="Sponsoring in der Leylix App" class="platform-image">
+      <img src="assets/mockup-location.jpg" alt="Locationübersicht Leylix" class="platform-image">
+    </div>
+  </section>
 
   </section>
 
@@ -550,6 +547,31 @@ function redirectToStore(app) {
     observer.observe(img);
   });
 </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.1
+        });
+
+        document.querySelectorAll('.platform-image').forEach(img => {
+          observer.observe(img);
+        });
+      } else {
+        // Fallback: sofort sichtbar machen
+        document.querySelectorAll('.platform-image').forEach(img => {
+          img.classList.add('visible');
+        });
+      }
+    });
+  </script>
 
 
 </body>
