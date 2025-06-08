@@ -17,12 +17,16 @@
 
   .platform-image {
   width: 100%;
-  max-width: 280px;
+  max-width: 300px;
   height: auto;
-  object-fit: contain;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  margin: 2rem auto;
+  opacity: 0;
+  transform: translateX(100px);
+  transition: opacity 1s ease, transform 1s ease;
+  cursor: pointer; /* ← Zeigt interaktive Fläche */
+  pointer-events: auto; /* ← WICHTIG: Klicks wieder erlauben */
 }
+
 
 .platform-image.visible {
   opacity: 1;
