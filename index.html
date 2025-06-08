@@ -300,8 +300,7 @@ header img {
     <h1>Leylix – Regionale Events, Tickets & Sponsoring</h1>
     <p>Digitale Eventlösungen, Blockchain-Zahlungen und KI-Technologien – vereint durch Vuneco, Leylix und VuneCoin.</p>
     <div class="cta-buttons">
-      <a href="https://explorer.vunecoin.com" class="cta-button" target="_blank" rel="noopener noreferrer">
-  Jetzt entdecken
+      <a href="#" class="cta-button" onclick="openExplorerOverlay()">Jetzt entdecken</a>
 </a>
       <a href="#plattformen">Unsere Plattformen</a>
     </div>
@@ -459,6 +458,31 @@ function redirectToStore(app) {
     document.getElementById("vuneCoinOverlay").style.display = "none";
   }
 </script>
+
+  <div id="explorerOverlay" style="
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.9);
+  z-index: 9999;
+">
+  <button class="overlay-close" onclick="closeExplorerOverlay()">×</button>
+  <iframe src="https://explorer.vunecoin.com" style="width: 100%; height: 100%; border: none;"></iframe>
+</div>
+
+<script>
+  function openExplorerOverlay() {
+    document.getElementById("explorerOverlay").style.display = "block";
+  }
+
+  function closeExplorerOverlay() {
+    document.getElementById("explorerOverlay").style.display = "none";
+  }
+</script>
+
 
 
 <style>
