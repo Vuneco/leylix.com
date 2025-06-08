@@ -384,6 +384,32 @@ function redirectToStore(app) {
 
   requestAnimationFrame(raf)
 </script>
+
+  <script>
+  function trackAndRedirect(platform) {
+    const iosUrl = "https://apps.apple.com/de/app/leylix/id123456789";       // ⬅️ DEINE URL
+    const androidUrl = "https://play.google.com/store/apps/details?id=com.leylix.app"; // ⬅️ DEINE URL
+
+    const eventName = platform === "ios" ? "click_appstore_ios" : "click_appstore_android";
+    const label = platform === "ios" ? "iOS Store" : "Android Store";
+    const redirectUrl = platform === "ios" ? iosUrl : androidUrl;
+
+    // GA4-Tracking
+    if (typeof gtag === "function") {
+      gtag('event', eventName, {
+        event_category: "App",
+        event_label: label
+      });
+    }
+
+    // Kleines Delay, damit das Event sicher rausgeht
+    setTimeout(() => {
+      window.location.href = redirectUrl;
+    }, 100);
+  }
+</script>
+
+  
 </body>
 </html>
 
