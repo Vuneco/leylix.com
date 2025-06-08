@@ -484,6 +484,37 @@ function redirectToStore(app) {
   to { opacity: 1; transform: scale(1); }
 }
 </style>
-  
+  <!-- Cookie-Banner -->
+<div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; right: 0; background: #222; color: white; padding: 1rem; z-index: 99999; text-align: center;">
+  <p style="margin: 0; font-size: 0.9rem;">
+    Diese Website verwendet Cookies, um Dienste wie Google Analytics bereitzustellen. <a href="/datenschutz.html" style="color: #00d1b2; text-decoration: underline;">Mehr erfahren</a>
+  </p>
+  <button onclick="acceptCookies()" style="margin-top: 0.5rem; background: #00d1b2; border: none; padding: 0.4rem 1rem; color: white; border-radius: 5px;">Akzeptieren</button>
+</div>
+<script>
+  function acceptCookies() {
+    localStorage.setItem("cookiesAccepted", "true");
+    document.getElementById("cookie-banner").style.display = "none";
+
+    // GA4 aktivieren
+    gtag('consent', 'update', {
+      'analytics_storage': 'granted'
+    });
+  }
+
+  window.onload = function() {
+    if (localStorage.getItem("cookiesAccepted") === "true") {
+      document.getElementById("cookie-banner").style.display = "none";
+      gtag('consent', 'update', {
+        'analytics_storage': 'granted'
+      });
+    } else {
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied'
+      });
+    }
+  };
+</script>
+
 </body>
 </html>
