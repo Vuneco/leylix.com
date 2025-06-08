@@ -15,6 +15,22 @@
     'analytics_storage': 'denied'
   });
 
+  .platform-image {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  margin: 2rem auto;
+  opacity: 0;
+  transform: translateX(100px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.platform-image.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
   // KEIN gtag('config', ...) hier – das kommt erst nach Zustimmung durch Cookie-Banner
 </script>
 
@@ -322,11 +338,12 @@ header img {
       <li><strong>Vuneco:</strong> Softwareentwicklung, KI-Lösungen, Plattform-Architektur</li>
     </ul>
     <div class="image-grid">
-      <img src="assets/LeylixWeb.png" alt="Leylix App Vorschau zur Ticketbuchung und Eventverwaltung in NRW">
-      <img src="assets/Leylix-Home.png" alt="VuneCoin Blockchain System">
-      <img src="assets/VuneCoinWallet.png" alt="Sponsoring in der Leylix App">
-      <img src="assets/mockup-location.jpg" alt="Locationübersicht Leylix">
-    </div>
+  <img src="assets/LeylixWeb.png" alt="Leylix App Vorschau zur Ticketbuchung und Eventverwaltung in NRW" class="platform-image">
+  <img src="assets/Leylix-Home.png" alt="VuneCoin Blockchain System" class="platform-image">
+  <img src="assets/VuneCoinWallet.png" alt="Sponsoring in der Leylix App" class="platform-image">
+  <img src="assets/mockup-location.jpg" alt="Locationübersicht Leylix" class="platform-image">
+</div>
+
   </section>
 
   <section>
@@ -519,6 +536,20 @@ function redirectToStore(app) {
     }
   };
 </script>
+  <script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  });
+
+  document.querySelectorAll('.platform-image').forEach(img => {
+    observer.observe(img);
+  });
+</script>
+
 
 </body>
 </html>
