@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Leylix vs Eventim – Die faire Alternative für Eventplaner</title>
   <meta name="description" content="Vergleiche Leylix mit Eventim & ticket.io: Geringere Gebühren, bessere Reichweite, direkter Kontakt zu Sponsoren und Gästen. Jetzt informieren.">
-  <meta name="keywords" content="Leylix, Eventim, Ticketverkauf, Events NRW, Sponsoring Plattform, Tickets verkaufen, Eventplattform Vergleich, Ticket.io Alternative">
+  <meta name="keywords" content="Leylix, Eventim, Ticketverkauf, Events NRW, Events Deutschland, Events Berlin, Sponsoring Plattform, Tickets verkaufen, Eventplattform Vergleich, Ticket.io Alternative">
   <link rel="canonical" href="https://seo.leylix.com/tickets/leylix-vs-eventim.html">
   <link rel="icon" type="image/png" href="/assets/leylix-icon.png">
   <style>
@@ -13,23 +13,50 @@
     h1 { color: #4b2aad; }
     a { color: #4b2aad; text-decoration: none; }
     a:hover { text-decoration: underline; }
-img.responsive-img {
-  width: 100%;
-  max-width: 360px;
-  height: auto;
-  display: block;
-  margin: 30px auto;
-  border-radius: 16px;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-img.responsive-img:hover {
-  transform: scale(1.02);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
-}
-
- 
+    .video-wrapper { position: relative; width: 100%; max-width: 360px; margin: 20px auto; }
+    .video-wrapper video { width: 100%; height: auto; display: block; border-radius: 12px; }
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 64px;
+      height: 64px;
+      background-color: rgba(220, 20, 60, 0.95);
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 2;
+      animation: pulse 1.5s infinite;
+    }
+    .play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 0;
+      height: 0;
+      border-left: 20px solid white;
+      border-top: 12px solid transparent;
+      border-bottom: 12px solid transparent;
+    }
+    @keyframes pulse {
+      0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.75; }
+      100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    }
+    .pause-button {
+      display: none;
+      margin: 10px auto;
+      text-align: center;
+    }
+    .pause-button button {
+      background-color: #4b2aad;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -37,6 +64,20 @@ img.responsive-img:hover {
   <h1>Leylix vs Eventim – Die faire Alternative für Eventplaner</h1>
 
   <p>Du willst Events veranstalten und suchst nach einer Plattform, die dich dabei ehrlich unterstützt? Dann wird es Zeit, Leylix mit den bekannten Ticketanbietern wie Eventim oder Ticket.io zu vergleichen.</p>
+
+  <h2>🎥 App-Einblick</h2>
+  <div class="video-wrapper">
+    <video id="leylixVideo" poster="/assets/Leylix-Home.png">
+      <source src="/assets/LeylixVideo-.mp4" type="video/mp4">
+      Dein Browser unterstützt kein Video.
+    </video>
+    <div class="play-button" id="playBtn" onclick="document.getElementById('leylixVideo').play(); document.getElementById('playBtn').style.display='none'; document.getElementById('pauseBtn').style.display='block';">
+      <div class="play-icon"></div>
+    </div>
+  </div>
+  <div class="pause-button" id="pauseBtn">
+    <button onclick="document.getElementById('leylixVideo').pause(); document.getElementById('playBtn').style.display='block'; document.getElementById('pauseBtn').style.display='none';">⏸️ Pause</button>
+  </div>
 
   <h2>✅ Weniger Gebühren, mehr Kontrolle</h2>
   <p>Bei Eventim & Co. zahlst du oft hohe Gebühren – teilweise bis zu 15 %. Leylix hingegen bietet dir eine faire, transparente Gebührenstruktur. Die Einnahmen gehen direkt an dich – Leylix behält nur eine kleine Plattformgebühr.</p>
@@ -52,12 +93,6 @@ img.responsive-img:hover {
 
   <h2>📊 Fazit</h2>
   <p>Wenn du Events ohne teure Zwischenhändler, mit echtem Support und direktem Sponsoring-Tool veranstalten willst: <strong>Dann ist Leylix deine Plattform.</strong></p>
-
-  <img src="/assets/channel.png" alt="Channel" class="responsive-img">
-<img src="/assets/Channel2.png" alt="Channel 2" class="responsive-img">
-<img src="/assets/HomeScreen.png" alt="Home Screen" class="responsive-img">
-<img src="/assets/News.png" alt="News" class="responsive-img">
-<img src="/assets/SingleChat.png" alt="Single Chat" class="responsive-img">
 
   <p><a href="https://leylix.com">Jetzt kostenlos starten auf Leylix.com</a></p>
 
