@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sponsoring für Vereine in NRW – Sichtbarkeit, Förderung & regionale Partnerschaften</title>
-  <meta name="description" content="Leylix verbindet Vereine mit lokalen Sponsoren in NRW. Starte dein Projekt mit kostenloser Reichweite, Ticketverkauf & Unternehmensförderung.">
-  <meta name="keywords" content="Verein Sponsoring NRW, Sponsoren finden, Fördermöglichkeiten Verein, Events für Vereine, Regionales Sponsoring, Sponsoring Plattform, Leylix Sponsoring">
+  <meta name="description" content="Leylix verbindet Vereine mit lokalen Sponsoren nicht nur in Deutschland. Starte dein Projekt mit kostenloser Reichweite, Ticketverkauf & Unternehmensförderung.">
+  <meta name="keywords" content="Verein Sponsoring ganz Deutschland, Sponsoren finden, Fördermöglichkeiten Verein, Events für Vereine, Regionales Sponsoring, Sponsoring Plattform, Leylix Sponsoring">
   <link rel="canonical" href="https://seo.leylix.com/sponsoring/vereine-nrw.html">
   <link rel="icon" type="image/png" href="/assets/leylix-icon.png">
   <style>
@@ -13,13 +13,64 @@
     h1 { color: #4b2aad; }
     a { color: #4b2aad; text-decoration: none; }
     a:hover { text-decoration: underline; }
+    img.responsive-img { width: 100%; max-width: 360px; height: auto; display: block; margin: 20px auto; border-radius: 8px; }
+    .video-wrapper { position: relative; width: 100%; max-width: 360px; margin: 20px auto; }
+    .video-wrapper video { width: 100%; height: auto; display: block; border-radius: 12px; }
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 64px;
+      height: 64px;
+      background-color: rgba(220, 20, 60, 0.95);
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 2;
+      animation: pulse 1.5s infinite;
+    }
+    .play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 0;
+      height: 0;
+      border-left: 20px solid white;
+      border-top: 12px solid transparent;
+      border-bottom: 12px solid transparent;
+    }
+    @keyframes pulse {
+      0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.75; }
+      100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    }
+    .pause-button {
+      display: none;
+      margin: 10px auto;
+      text-align: center;
+    }
+    .pause-button button {
+      background-color: #4b2aad;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
 
+<header style="display: flex; justify-content: flex-start; align-items: center; padding: 20px;">
+  <a href="https://leylix.com">
+    <img src="/assets/LeylixColored5125.png" alt="Leylix Logo" style="height: 60px;">
+  </a>
+</header>
+
 <h1>Sponsoring für Vereine in NRW – Gemeinsam stark durch regionale Förderung</h1>
 
-<p>Ob Fußballverein, Kulturgruppe oder Jugendinitiative – viele Vereine in Nordrhein-Westfalen leisten Großartiges für unsere Gesellschaft. Doch oft fehlt es an Budget, um Events zu organisieren, Projekte umzusetzen oder Equipment anzuschaffen. Genau hier setzt Leylix an.</p>
+<p>Ob Fußballverein, Kulturgruppe oder Jugendinitiative – viele Vereine in ganz Deutschland leisten Großartiges für unsere Gesellschaft. Doch oft fehlt es an Budget, um Events zu organisieren, Projekte umzusetzen oder Equipment anzuschaffen. Genau hier setzt Leylix an.</p>
 
 <h2>💡 Was ist Leylix?</h2>
 <p>Leylix ist die erste Plattform, die Events, Sponsoring und Community digital miteinander verknüpft. Vereine können kostenlos Events erstellen, Sponsoren ansprechen und Förderungen direkt aus der Region erhalten – ganz ohne Zwischenhändler.</p>
@@ -29,6 +80,26 @@
 
 <h2>📣 Lokale Sichtbarkeit für dein Projekt</h2>
 <p>Jedes Vereins-Event auf Leylix ist öffentlich auffindbar – ob Sommerfest, Turnier, Spendenlauf oder Infoabend. Mit wenigen Klicks können Unternehmen ihre Unterstützung anbieten. Die Plattform zeigt automatisch passende Sponsoring-Vorschläge an.</p>
+
+<h2>🎥 Einblick in die App</h2>
+<div class="video-wrapper">
+  <video id="leylixVideo" poster="/assets/Leylix-Home.png">
+    <source src="/assets/LeylixVideo-.mp4" type="video/mp4">
+    Dein Browser unterstützt kein Video.
+  </video>
+  <div class="play-button" id="playBtn" onclick="document.getElementById('leylixVideo').play(); document.getElementById('playBtn').style.display='none'; document.getElementById('pauseBtn').style.display='block';">
+    <div class="play-icon"></div>
+  </div>
+</div>
+<div class="pause-button" id="pauseBtn">
+  <button onclick="document.getElementById('leylixVideo').pause(); document.getElementById('playBtn').style.display='block'; document.getElementById('pauseBtn').style.display='none';">⏸️ Pause</button>
+</div>
+
+<img src="/assets/channel.png" alt="Channel" class="responsive-img">
+<img src="/assets/Channel2.png" alt="Channel 2" class="responsive-img">
+<img src="/assets/HomeScreen.png" alt="Home Screen" class="responsive-img">
+<img src="/assets/News.png" alt="News" class="responsive-img">
+<img src="/assets/SingleChat.png" alt="Single Chat" class="responsive-img">
 
 <h2>🤝 Gegenseitige Unterstützung im Fokus</h2>
 <p>Leylix stärkt die lokale Wirtschaft und Vereine zugleich:  
