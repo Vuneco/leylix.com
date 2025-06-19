@@ -24,16 +24,15 @@
       height: 64px;
       background-color: rgba(75, 42, 173, 0.9);
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       cursor: pointer;
       z-index: 2;
       animation: pulse 1.5s infinite;
     }
-    .play-button::before {
-      content: '';
-      display: block;
+    .play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       width: 0;
       height: 0;
       border-left: 20px solid white;
@@ -118,7 +117,9 @@ Kein teures Gebührenmodell. Kein Kontrollverlust. Kein Warten auf Freigaben.
     <source src="/assets/LeylixVideo-.mp4" type="video/mp4">
     Dein Browser unterstützt kein Video.
   </video>
-<div class="play-button" id="playBtn" onclick="document.getElementById('leylixVideo').play(); document.getElementById('playBtn').style.display='none'; document.getElementById('pauseBtn').style.display='block';"></div>
+<div class="play-button" id="playBtn" onclick="document.getElementById('leylixVideo').play(); document.getElementById('playBtn').style.display='none'; document.getElementById('pauseBtn').style.display='block';">
+    <div class="play-icon"></div>
+  </div>
 </div>
 <div class="pause-button" id="pauseBtn">
   <button onclick="document.getElementById('leylixVideo').pause(); document.getElementById('playBtn').style.display='block'; document.getElementById('pauseBtn').style.display='none';">⏸️ Pause</button>
