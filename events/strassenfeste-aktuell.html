@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Aktuelle Straßenfeste in NRW – mit Leylix sichtbar & erfolgreich</title>
+  <title>Aktuelle Straßenfeste in ganz Deutschland – mit Leylix regional und überregional sichtbar & erfolgreich</title>
   <meta name="description" content="Straßenfeste in NRW planen, promoten und erfolgreich umsetzen – mit Unterstützung durch Leylix. Entdecke Events, Sponsoring & regionale Möglichkeiten.">
-  <meta name="keywords" content="Straßenfeste NRW, aktuelle Events, Straßenfest anmelden, Event Plattform, Straßenfeste organisieren, Events promoten, Straßenfest Sponsoring">
+  <meta name="keywords" content="Straßenfeste in ganz Deutschland, aktuelle Events, Straßenfest anmelden, Event Plattform, Straßenfeste organisieren, Events promoten, Straßenfest Sponsoring">
   <link rel="canonical" href="https://seo.leylix.com/events/strassenfeste-aktuell.html">
   <link rel="icon" type="image/png" href="/assets/leylix-icon.png">
   <style>
@@ -13,13 +13,64 @@
     h1 { color: #4b2aad; }
     a { color: #4b2aad; text-decoration: none; }
     a:hover { text-decoration: underline; }
+    img.responsive-img { width: 100%; max-width: 360px; height: auto; display: block; margin: 20px auto; border-radius: 8px; }
+    .video-wrapper { position: relative; width: 100%; max-width: 360px; margin: 20px auto; }
+    .video-wrapper video { width: 100%; height: auto; display: block; border-radius: 12px; }
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 64px;
+      height: 64px;
+      background-color: rgba(220, 20, 60, 0.95);
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 2;
+      animation: pulse 1.5s infinite;
+    }
+    .play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 0;
+      height: 0;
+      border-left: 20px solid white;
+      border-top: 12px solid transparent;
+      border-bottom: 12px solid transparent;
+    }
+    @keyframes pulse {
+      0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.75; }
+      100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    }
+    .pause-button {
+      display: none;
+      margin: 10px auto;
+      text-align: center;
+    }
+    .pause-button button {
+      background-color: #4b2aad;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
 
+<header style="display: flex; justify-content: flex-start; align-items: center; padding: 20px;">
+  <a href="https://leylix.com">
+    <img src="/assets/LeylixColored5125.png" alt="Leylix Logo" style="height: 60px;">
+  </a>
+</header>
+
 <h1>Straßenfeste aktuell – Sichtbarkeit für lokale Events in NRW</h1>
 
-<p>Straßenfeste sind das Herz vieler Städte und Dörfer in NRW – sie verbinden Menschen, feiern Vielfalt und schaffen Raum für Kultur, Handwerk, Musik und gutes Essen. Doch oft fehlen Reichweite, Helfer oder finanzielle Mittel, um ein solches Fest wirklich groß zu machen. Genau hier kommt <strong>Leylix</strong> ins Spiel.</p>
+<p>Straßenfeste sind das Herz vieler Städte und Dörfer in ganz Deutschland – sie verbinden Menschen, feiern Vielfalt und schaffen Raum für Kultur, Handwerk, Musik und gutes Essen. Doch oft fehlen Reichweite, Helfer oder finanzielle Mittel, um ein solches Fest wirklich groß zu machen. Genau hier kommt <strong>Leylix</strong> ins Spiel.</p>
 
 <h2>💡 Warum Leylix für Straßenfeste?</h2>
 <p>Leylix ist die <strong>erste Plattform, die lokale Events mit Sponsoren, Besuchern und regionaler Sichtbarkeit verknüpft</strong>. Du willst ein Straßenfest anmelden oder bewerben? Auf Leylix erreichst du nicht nur mehr Menschen – du bekommst auch echte Unterstützung.</p>
@@ -52,8 +103,19 @@
   <li>🎭 Kulturmeile mit Tanzgruppen, Vereinen & regionalen Ausstellern</li>
 </ul>
 
-<h2>📥 Jetzt starten</h2>
-<p>Ob du selbst ein Straßenfest organisieren willst oder dich einfach informieren möchtest: Mit Leylix findest du aktuelle Straßenfeste, spannende Ideen und starke Partner – regional und digital verbunden.</p>
+<h2>📈 Einblick in die App</h2>
+<div class="video-wrapper">
+  <video id="leylixVideo" poster="/assets/Leylix-Home.png">
+    <source src="/assets/LeylixVideo-.mp4" type="video/mp4">
+    Dein Browser unterstützt kein Video.
+  </video>
+  <div class="play-button" id="playBtn" onclick="document.getElementById('leylixVideo').play(); document.getElementById('playBtn').style.display='none'; document.getElementById('pauseBtn').style.display='block';">
+    <div class="play-icon"></div>
+  </div>
+</div>
+<div class="pause-button" id="pauseBtn">
+  <button onclick="document.getElementById('leylixVideo').pause(); document.getElementById('playBtn').style.display='block'; document.getElementById('pauseBtn').style.display='none';">⏸️ Pause</button>
+</div>
 
 <p><a href="https://leylix.com">Jetzt Event anlegen auf Leylix.com</a></p>
 
