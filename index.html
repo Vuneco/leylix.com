@@ -369,6 +369,30 @@ header img {
     right: 20px;
   }
 }
+
+    .logo-carousel-container {
+  overflow: hidden;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  width: 100%;
+  margin-top: 2rem;
+}
+.logo-carousel-track {
+  display: flex;
+  gap: 3rem;
+  animation: scrollLogo 30s linear infinite;
+}
+.logo-carousel-track img {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+}
+@keyframes scrollLogo {
+  from { transform: translateX(100%); }
+  to { transform: translateX(-100%); }
+}
     
   </style>
 </head>
@@ -459,6 +483,20 @@ header img {
   </a>
   </section>
 
+<section>
+  <h2>Unsere Partner & Sponsoren</h2>
+  <div class="logo-carousel-container">
+    <div class="logo-carousel-track">
+      <img src="https://raw.githubusercontent.com/leylix-com/assets/main/Leylix-app.png" alt="Logo 1">
+      <img src="https://raw.githubusercontent.com/leylix-com/assets/main/Leylix-app.png" alt="Logo 2">
+      <img src="https://raw.githubusercontent.com/leylix-com/assets/main/Leylix-app.png" alt="Logo 3">
+      <img src="https://raw.githubusercontent.com/leylix-com/assets/main/Leylix-app.png" alt="Logo 4">
+      <img src="https://raw.githubusercontent.com/leylix-com/assets/main/Leylix-app.png" alt="Logo 5">
+    </div>
+  </div>
+</section>
+
+  
   <!-- Elion Integration (Platzhalter) -->
   <section>
     <h2>Fragen? Elion hilft!</h2>
