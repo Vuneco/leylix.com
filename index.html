@@ -382,12 +382,13 @@ header img {
     .logo-carousel-track:hover {
   animation-play-state: paused;
 }
-
+    
     .logo-carousel-track {
   display: flex;
   gap: 5rem;
   width: max-content;
-  animation: scrollLogo 8s linear infinite; /* Geschwindigkeit hier anpassen */
+  animation: scrollLogo linear infinite;
+  animation-duration: 20s; /* Geschwindigkeit anpassbar */
 }
 
 .logo-item {
@@ -411,8 +412,12 @@ header img {
 }
 
     @keyframes scrollLogo {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
     
   </style>
