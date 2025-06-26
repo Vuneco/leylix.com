@@ -373,25 +373,42 @@ header img {
     .logo-carousel-container {
   overflow: hidden;
   background: #fff;
-  padding: 1.5rem;
+  padding: 2rem;
   border-radius: 1rem;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   width: 100%;
   margin-top: 2rem;
 }
+
 .logo-carousel-track {
   display: flex;
-  gap: 3rem;
-  animation: scrollLogo 30s linear infinite;
+  gap: 5rem;
+  animation: scrollLogo 40s linear infinite; /* Geschwindigkeit hier anpassen */
 }
-.logo-carousel-track img {
-  height: 50px;
+
+.logo-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 150px;
+}
+
+.logo-item img {
+  height: 80px;
   width: auto;
   object-fit: contain;
 }
+
+.logo-label {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #333;
+  text-align: center;
+}
+
 @keyframes scrollLogo {
-  from { transform: translateX(100%); }
-  to { transform: translateX(-100%); }
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
     
   </style>
@@ -487,11 +504,47 @@ header img {
   <h2>Unsere Partner & Sponsoren</h2>
   <div class="logo-carousel-container">
     <div class="logo-carousel-track">
-      <img src="https://raw.githubusercontent.com/leylix-com/assets/main/Leylix-app.png" alt="Logo 1">
-      <img src="https://raw.githubusercontent.com/leylix-com/assets/main/Leylix-app.png" alt="Logo 2">
-      <img src="https://raw.githubusercontent.com/leylix-com/assets/main/Leylix-app.png" alt="Logo 3">
-      <img src="https://raw.githubusercontent.com/leylix-com/assets/main/Leylix-app.png" alt="Logo 4">
-      <img src="https://raw.githubusercontent.com/leylix-com/assets/main/Leylix-app.png" alt="Logo 5">
+      <div class="logo-item">
+        <img src="https://raw.githubusercontent.com/leylix-com/assets/main/Leylix-app.png" alt="Logo 1">
+        <div class="logo-label">Leylix</div>
+      </div>
+      <div class="logo-item">
+        <img src="https://raw.githubusercontent.com/leylix-com/assets/main/Leylix-app.png" alt="Logo 2">
+        <div class="logo-label">Vuneco</div>
+      </div>
+      <div class="logo-item">
+        <img src="https://raw.githubusercontent.com/leylix-com/assets/main/Leylix-app.png" alt="Logo 3">
+        <div class="logo-label">VuneCoin</div>
+      </div>
+      <div class="logo-item">
+        <img src="https://raw.githubusercontent.com/leylix-com/assets/main/Leylix-app.png" alt="Logo 4">
+        <div class="logo-label">Sponsor 4</div>
+      </div>
+      <div class="logo-item">
+        <img src="https://raw.githubusercontent.com/leylix-com/assets/main/Leylix-app.png" alt="Logo 5">
+        <div class="logo-label">Sponsor 5</div>
+      </div>
+      <!-- Wiederholung für Endlos-Schleife -->
+      <div class="logo-item">
+        <img src="https://raw.githubusercontent.com/leylix-com/assets/main/Leylix-app.png" alt="Logo 1">
+        <div class="logo-label">Leylix</div>
+      </div>
+      <div class="logo-item">
+        <img src="https://raw.githubusercontent.com/leylix-com/assets/main/Leylix-app.png" alt="Logo 2">
+        <div class="logo-label">Vuneco</div>
+      </div>
+      <div class="logo-item">
+        <img src="https://raw.githubusercontent.com/leylix-com/assets/main/Leylix-app.png" alt="Logo 3">
+        <div class="logo-label">VuneCoin</div>
+      </div>
+      <div class="logo-item">
+        <img src="https://raw.githubusercontent.com/leylix-com/assets/main/Leylix-app.png" alt="Logo 4">
+        <div class="logo-label">Sponsor 4</div>
+      </div>
+      <div class="logo-item">
+        <img src="https://raw.githubusercontent.com/leylix-com/assets/main/Leylix-app.png" alt="Logo 5">
+        <div class="logo-label">Sponsor 5</div>
+      </div>
     </div>
   </div>
 </section>
