@@ -379,11 +379,27 @@ header img {
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   width: 100%;
   margin-top: 2rem;
-
-  /* Fade-In/Out an den Seiten */
-  mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+  
 }
+    .fade-left, .fade-right {
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.fade-left {
+  left: 0;
+  background: linear-gradient(to right, white 0%, transparent 100%);
+}
+
+.fade-right {
+  right: 0;
+  background: linear-gradient(to left, white 0%, transparent 100%);
+}
+
 
     .logo-carousel-track:hover {
   animation-play-state: paused;
@@ -519,6 +535,9 @@ header img {
   <h2>Unsere Partner & Sponsoren</h2>
   <div class="logo-carousel-container">
     <div class="logo-carousel-track">
+      <div class="fade-left"></div>
+      <div class="fade-right"></div>
+
       <div class="logo-item">
         <img src="https://raw.githubusercontent.com/Vuneco/leylix.com/main/assets/leylix-app.png" alt="Leylix Logo">
         <div class="logo-label">Leylix</div>
