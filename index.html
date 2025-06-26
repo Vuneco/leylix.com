@@ -370,7 +370,8 @@ header img {
   }
 }
 
-    .logo-carousel-container {
+   .logo-carousel-container {
+  position: relative;
   overflow: hidden;
   background: #fff;
   padding: 2rem;
@@ -378,7 +379,12 @@ header img {
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   width: 100%;
   margin-top: 2rem;
+
+  /* Fade-In/Out an den Seiten */
+  mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
 }
+
     .logo-carousel-track:hover {
   animation-play-state: paused;
 }
