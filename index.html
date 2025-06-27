@@ -559,7 +559,7 @@ header img {
   <h2>Unsere Partner & Sponsoren</h2>
   
     <div class="logo-carousel-container">
-      <div id="logo-info-display" class="external-info-box" style="display: none;"></div>
+      
   <div class="fade-left"></div>
   <div class="fade-right"></div>
 
@@ -568,6 +568,8 @@ header img {
       <img src="https://raw.githubusercontent.com/Vuneco/leylix.com/main/assets/leylix-app.png" alt="Leylix Logo">
       <div class="logo-label">Leylix</div>
     </div>
+      <div id="logo-info-display" class="external-info-box" style="display: none;"></div>
+
 
       <div class="logo-item">
         <img src="https://raw.githubusercontent.com/Vuneco/leylix.com/main/assets/vuneco-colored.png" alt="Vuneco Logo">
@@ -855,10 +857,22 @@ function redirectToStore(app) {
   
 
   <script>
+let lastInfoTitle = null;
+
 function showInfo(title, description) {
   const box = document.getElementById('logo-info-display');
+
+  // Wenn derselbe Text nochmal angeklickt wurde, ausblenden
+  if (box.style.display === 'block' && lastInfoTitle === title) {
+    box.style.display = 'none';
+    lastInfoTitle = null;
+    return;
+  }
+
+  // Neuen Inhalt anzeigen
   box.innerHTML = `<strong>${title}</strong><br>${description}`;
   box.style.display = 'block';
+  lastInfoTitle = title;
 }
 </script>
 
