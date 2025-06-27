@@ -562,14 +562,10 @@ header img {
   <div class="fade-left"></div>
   <div class="fade-right"></div>
 
-  <div class="logo-carousel-track">
-    <div class="logo-item" onclick="toggleInfo(this)">
+    <div class="logo-carousel-track">
+    <div class="logo-item" onclick="showInfo('Leylix GmbH', 'Digitale Eventplattform aus Köln – Events, Tickets & Sponsoring.')">
       <img src="https://raw.githubusercontent.com/Vuneco/leylix.com/main/assets/leylix-app.png" alt="Leylix Logo">
       <div class="logo-label">Leylix</div>
-      <div class="info-box">
-        <strong>Leylix GmbH</strong><br>
-        Digitale Eventplattform aus Köln – Events, Tickets & Sponsoring.
-      </div>
     </div>
 
       <div class="logo-item">
@@ -855,21 +851,14 @@ function redirectToStore(app) {
   </p>
 </section>
 
-  <script>
-  function toggleInfo(clickedItem) {
-    const allItems = document.querySelectorAll('.logo-item');
-    allItems.forEach(item => {
-      if (item !== clickedItem) {
-        const box = item.querySelector('.info-box');
-        if (box) box.style.display = 'none';
-      }
-    });
+  
 
-    const infoBox = clickedItem.querySelector('.info-box');
-    if (infoBox) {
-      infoBox.style.display = infoBox.style.display === 'block' ? 'none' : 'block';
-    }
-  }
+  <script>
+function showInfo(title, description) {
+  const box = document.getElementById('logo-info-display');
+  box.innerHTML = `<strong>${title}</strong><br>${description}`;
+  box.style.display = 'block';
+}
 </script>
 
   <p>Powered by <strong>Vuneco</strong></p>
