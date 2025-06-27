@@ -417,25 +417,25 @@ header img {
   position: relative;
 }
 
-.info-box {
-  margin-top: 10px;
-  background: #ffffff;
+.external-info-box {
+  background: #fff;
   color: #000;
-  padding: 12px 15px;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  display: none;
-  animation: slideDown 0.3s ease;
-  font-size: 0.9rem;
-  max-width: 160px;
+  padding: 16px 20px;
+  margin-top: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  font-size: 1rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  animation: fadeInBox 0.3s ease;
   text-align: left;
 }
 
-@keyframes slideDown {
-  from {opacity: 0; transform: translateY(-5px);}
-  to {opacity: 1; transform: translateY(0);}
+@keyframes fadeInBox {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-
 
 .logo-item {
   display: flex;
@@ -559,6 +559,7 @@ header img {
   <h2>Unsere Partner & Sponsoren</h2>
   
     <div class="logo-carousel-container">
+      <div id="logo-info-display" class="external-info-box" style="display: none;"></div>
   <div class="fade-left"></div>
   <div class="fade-right"></div>
 
