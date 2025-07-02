@@ -789,31 +789,57 @@ function redirectToStore(app) {
   to { opacity: 1; transform: scale(1); }
 }
 </style>
-  <!-- Cookie-Banner -->
+  
+<!-- Cookie-Banner -->
 <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; right: 0; background: #222; color: white; padding: 1rem; z-index: 99999; text-align: center;">
   <p style="margin: 0; font-size: 0.9rem;">
-    Diese Website verwendet Cookies, um Dienste wie Google Analytics bereitzustellen. <a href="/datenschutz.html" style="color: #00d1b2; text-decoration: underline;">Mehr erfahren</a>
+    Diese Website verwendet Cookies, um Dienste wie Google Analytics bereitzustellen. 
+    <a href="/datenschutz.html" style="color: #00d1b2; text-decoration: underline;">Mehr erfahren</a>
   </p>
-  <button onclick="acceptCookies()" style="margin-top: 0.5rem; background: #00d1b2; border: none; padding: 0.4rem 1rem; color: white; border-radius: 5px;">Akzeptieren</button>
+  <div style="margin-top: 0.5rem;">
+    <button onclick="acceptCookies()" style="background: #00d1b2; border: none; padding: 0.4rem 1rem; color: white; border-radius: 5px; margin-right: 0.5rem;">Akzeptieren</button>
+    <button onclick="declineCookies()" style="background: #777; border: none; padding: 0.4rem 1rem; color: white; border-radius: 5px;">Ablehnen</button>
+  </div>
 </div>
+  
 <script>
-  function acceptCookies() {
-    localStorage.setItem("cookiesAccepted", "true");
-    document.getElementById("cookie-banner").style.display = "none";
 
-    // GA4 aktivieren
+
+
+  
+ <script>
+  function acceptCookies() {
+    localStorage.setItem("cookieConsent", "accepted");
+    document.getElementById("cookie-banner").style.display = "none";
     gtag('consent', 'update', {
       'analytics_storage': 'granted'
     });
   }
 
-  window.onload = function() {
-    if (localStorage.getItem("cookiesAccepted") === "true") {
+  function declineCookies() {
+    localStorage.setItem("cookieConsent", "declined");
+    document.getElementById("cookie-banner").style.display = "none";
+    gtag('consent', 'update', {
+      'analytics_storage': 'denied'
+    });
+  }
+
+  window.onload = function () {
+    const consent = localStorage.getItem("cookieConsent");
+
+    if (consent === "accepted") {
       document.getElementById("cookie-banner").style.display = "none";
       gtag('consent', 'update', {
         'analytics_storage': 'granted'
       });
+    } else if (consent === "declined") {
+      document.getElementById("cookie-banner").style.display = "none";
+      gtag('consent', 'update', {
+        'analytics_storage': 'denied'
+      });
     } else {
+      // Noch keine Entscheidung → Banner bleibt sichtbar
+      document.getElementById("cookie-banner").style.display = "block";
       gtag('consent', 'default', {
         'analytics_storage': 'denied'
       });
@@ -863,7 +889,7 @@ function redirectToStore(app) {
   <section>
   <h2>Leylix jetzt testen</h2>
   <p>
-    Du willst selbst sehen, warum Leylix besser ist als Eventim oder ticket.io?
+    Du willst selbst sehen, warum Leylix besser ist als Eventim, Reserix oder ticket.io?
     <a href="https://leylix.com">Hier geht’s zur Hauptplattform von Leylix</a> – dort findest du Events, Ticketverkauf, Sponsoring und alles, was eine moderne Eventplattform braucht.
   </p>
 </section>
