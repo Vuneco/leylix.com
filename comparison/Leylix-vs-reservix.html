@@ -82,32 +82,35 @@
       width: auto;
       max-width: 100px;
     }
-    #leyllixOverlayContainer {
+    #leylixOverlayContainer {
       position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background-color: #0d0d0d;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.85);
       display: none;
       z-index: 99999;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      animation: fadeIn 0.5s ease-in-out;
+      animation: fadeIn 0.4s ease-in-out;
     }
-    #leyllixOverlayContainer iframe {
+    #leylixOverlayContainer iframe {
       width: 90%;
       height: 80%;
       border: none;
       border-radius: 1rem;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      box-shadow: 0 0 25px rgba(0,0,0,0.6);
     }
-    #leyllixOverlayContainer button.close-btn {
-      margin-top: 1rem;
-      padding: 0.5rem 1rem;
-      background: #00ffcc;
+    #leylixOverlayContainer .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 2rem;
+      background: none;
       border: none;
-      border-radius: 0.5rem;
-      font-weight: bold;
-      color: #000;
+      color: #fff;
       cursor: pointer;
     }
     @keyframes fadeIn {
@@ -155,9 +158,9 @@
     </p>
   </div>
 
-  <div id="leyllixOverlayContainer">
+  <div id="leylixOverlayContainer">
+    <button class="close-btn" onclick="hideLeylixOverlay()">&times;</button>
     <iframe src="https://leylix.com" allowfullscreen></iframe>
-    <button class="close-btn" onclick="hideLeylixOverlay()">Schließen</button>
   </div>
 
   <footer>
@@ -172,12 +175,10 @@
 
   <script>
     function showLeylixOverlay() {
-      const overlay = document.getElementById('leyllixOverlayContainer');
-      overlay.style.display = 'flex';
+      document.getElementById('leylixOverlayContainer').style.display = 'flex';
     }
     function hideLeylixOverlay() {
-      const overlay = document.getElementById('leyllixOverlayContainer');
-      overlay.style.display = 'none';
+      document.getElementById('leylixOverlayContainer').style.display = 'none';
     }
   </script>
 </body>
