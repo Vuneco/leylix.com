@@ -887,15 +887,12 @@ function showInfo(title, description) {
     <p style="white-space: pre-wrap; line-height: 1.5;">${description}</p>
   `;
 
-  box.style.display = 'block';
-  lastInfoTitle = title;
-}
-
   // Neuen Inhalt anzeigen
   box.innerHTML = `<strong>${title}</strong><br>${description}`;
   box.style.display = 'block';
   lastInfoTitle = title;
 }
+
 </script>
 
   <p>Powered by <strong>Vuneco</strong></p>
