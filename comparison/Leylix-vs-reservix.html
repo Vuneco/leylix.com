@@ -78,14 +78,14 @@
       flex-wrap: wrap;
     }
     .footer-logos img {
-      height: 40px;
+      height: 60px;
       width: auto;
       max-width: 100px;
     }
     #leyllixOverlayContainer {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background-color: rgba(0, 0, 0, 1.0);
+      background-color: #0d0d0d;
       display: none;
       z-index: 99999;
       justify-content: center;
@@ -98,8 +98,9 @@
       height: 80%;
       border: none;
       border-radius: 1rem;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
     }
-    #leyllixOverlayContainer button {
+    #leyllixOverlayContainer button.close-btn {
       margin-top: 1rem;
       padding: 0.5rem 1rem;
       background: #00ffcc;
@@ -117,7 +118,7 @@
 </head>
 <body>
   <header>
-    <h1>🚀 Leylix vs. Reservix – Wer gewinnt das Event-Spiel?</h1>
+    <h1> Leylix vs. Reservix – Wer gewinnt das Event-Spiel?</h1>
   </header>
 
   <div class="container">
@@ -154,9 +155,9 @@
     </p>
   </div>
 
-  <div id="leyllixOverlayContainer" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); display: none; z-index: 9999; align-items: center; justify-content: center; flex-direction: column;">
+  <div id="leyllixOverlayContainer">
     <iframe src="https://leylix.com" allowfullscreen></iframe>
-    <button onclick="hideLeylixOverlay()">Schließen</button>
+    <button class="close-btn" onclick="hideLeylixOverlay()">Schließen</button>
   </div>
 
   <footer>
@@ -164,8 +165,8 @@
     <span style="opacity: 0.6; font-size: 0.85rem;">Leylix is a product of Vuneco GmbH.</span>
     <div class="footer-logos">
       <img src="/assets/leylix-icon.png" alt="Leylix Logo">
-      <img src="/assets/vuneco-white.png" alt="Vuneco Logo">
-      <img src="/assets/logo-vunecoin-icon.png" alt="VuneCoin Logo">
+      <img src="/assets/vuneco-logo.png" alt="Vuneco Logo">
+      <img src="/assets/vunecoin-logo.png" alt="VuneCoin Logo">
     </div>
   </footer>
 
