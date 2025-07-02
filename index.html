@@ -809,20 +809,26 @@ function redirectToStore(app) {
   
  <script>
   function acceptCookies() {
-    localStorage.setItem("cookieConsent", "accepted");
-    document.getElementById("cookie-banner").style.display = "none";
+  localStorage.setItem("cookieConsent", "accepted");
+  document.getElementById("cookie-banner").style.display = "none";
+
+  if (typeof gtag === "function") {
     gtag('consent', 'update', {
       'analytics_storage': 'granted'
     });
   }
+}
 
-  function declineCookies() {
-    localStorage.setItem("cookieConsent", "declined");
-    document.getElementById("cookie-banner").style.display = "none";
+function declineCookies() {
+  localStorage.setItem("cookieConsent", "declined");
+  document.getElementById("cookie-banner").style.display = "none";
+
+  if (typeof gtag === "function") {
     gtag('consent', 'update', {
       'analytics_storage': 'denied'
     });
   }
+}
 
   window.onload = function () {
     const consent = localStorage.getItem("cookieConsent");
