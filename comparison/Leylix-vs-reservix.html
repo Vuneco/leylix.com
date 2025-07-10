@@ -221,17 +221,27 @@
   </script>
 
 <script>
-  const video = document.getElementById('leylixPlayer');
-  const offset = video.offsetTop;
+  window.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('leylixPlayer');
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > offset + 200) {
-      video.classList.add('sticky');
-    } else {
-      video.classList.remove('sticky');
-    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting && !video.paused) {
+          video.classList.add('sticky');
+        } else {
+          video.classList.remove('sticky');
+        }
+      },
+      {
+        root: null,
+        threshold: 0.2 // Sobald 20% nicht mehr sichtbar sind
+      }
+    );
+
+    observer.observe(video);
   });
 </script>
+
   
 </body>
 </html>
