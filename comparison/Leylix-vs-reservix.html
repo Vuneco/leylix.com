@@ -144,6 +144,24 @@
       from { opacity: 0; transform: scale(0.95); }
       to { opacity: 1; transform: scale(1); }
     }
+
+.video-wrapper.sticky {
+  position: fixed;
+  width: 300px;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  border-radius: 12px;
+  background: #000;
+}
+
+.video-wrapper.sticky video {
+  width: 100%;
+  height: auto;
+}
+
+    
   </style>
 </head>
 <body>
@@ -174,11 +192,12 @@
 
     <h2>Video</h2>
         
-    <video id="leylixPlayer" controls poster="/assets/preview.jpg">
-  <source src="/assets/AI_Video.mp4" type="video/mp4">
-  Dein Browser unterstützt kein HTML5 Video.
-</video>
-
+    <div id="videoContainer" class="video-wrapper">
+  <video id="leylixPlayer" controls poster="/assets/preview.jpg">
+    <source src="/assets/AI_Video.mp4" type="video/mp4">
+    Dein Browser unterstützt kein HTML5 Video.
+  </video>
+</div>
 
     <h2>Fazit</h2>
     <p><strong>Reservix</strong> ist für große Theaterhäuser gemacht. <strong>Leylix</strong> ist für dich. Schnell. Ehrlich. Smart. Und gemacht für die echte Welt da draußen.</p>
@@ -221,24 +240,22 @@
   </script>
 
 <script>
-  window.addEventListener('DOMContentLoaded', () => {
-    const video = document.getElementById('leylixPlayer');
+  document.addEventListener("DOMContentLoaded", function () {
+    const video = document.getElementById("leylixPlayer");
+    const container = document.getElementById("videoContainer");
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting && !video.paused) {
-          video.classList.add('sticky');
-        } else {
-          video.classList.remove('sticky');
-        }
-      },
-      {
-        root: null,
-        threshold: 0.2 // Sobald 20% nicht mehr sichtbar sind
+    window.addEventListener("scroll", () => {
+      const rect = container.getBoundingClientRect();
+
+      // Wenn das Video aus dem sichtbaren Bereich oben rausscrollt UND läuft
+      if (rect.bottom < 0 && !video.paused) {
+        container.classList.add("sticky");
+      } 
+      // Wenn wieder sichtbar oder pausiert → zurück
+      else {
+        container.classList.remove("sticky");
       }
-    );
-
-    observer.observe(video);
+    });
   });
 </script>
 
