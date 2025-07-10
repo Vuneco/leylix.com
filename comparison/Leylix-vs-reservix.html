@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-
+  
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -29,6 +29,17 @@
   <link rel="icon" type="image/png" href="/assets/leylix-icon.png">
   <title>Vergleich: Leylix vs. Reservix</title>
   <style>
+
+#leylixPlayer.sticky {
+  position: fixed;
+  width: 300px;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  border-radius: 10px;
+}
+    
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
@@ -140,6 +151,20 @@
     <h1> Leylix vs. Reservix – Wer gewinnt das Event-Spiel?</h1>
   </header>
 
+  <script>
+  const video = document.getElementById('leylixPlayer');
+  const offset = video.offsetTop;
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > offset + 200) {
+      video.classList.add('sticky');
+    } else {
+      video.classList.remove('sticky');
+    }
+  });
+</script>
+
+
   <div class="container">
     <p><span class="highlight">Leylix</span> ist die neue Generation von Event-Plattformen: sofort einsatzbereit, fair im Preis und gemacht für Vereine, Städte, Schulen & kreative Köpfe. <span class="highlight">Reservix</span> ist etabliert – aber auch langsam, teuer und unflexibel. Hier ist der direkte Vergleich.</p>
 
@@ -162,10 +187,11 @@
 
     <h2>Video</h2>
         
-    <video controls poster="/assets/preview.jpg">
+    <video id="leylixPlayer" controls poster="/assets/preview.jpg">
   <source src="/assets/AI_Video.mp4" type="video/mp4">
   Dein Browser unterstützt kein HTML5 Video.
 </video>
+
 
     <h2>Fazit</h2>
     <p><strong>Reservix</strong> ist für große Theaterhäuser gemacht. <strong>Leylix</strong> ist für dich. Schnell. Ehrlich. Smart. Und gemacht für die echte Welt da draußen.</p>
