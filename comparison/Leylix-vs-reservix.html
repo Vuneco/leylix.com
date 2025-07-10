@@ -151,20 +151,7 @@
     <h1> Leylix vs. Reservix – Wer gewinnt das Event-Spiel?</h1>
   </header>
 
-  <script>
-  const video = document.getElementById('leylixPlayer');
-  const offset = video.offsetTop;
-
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > offset + 200) {
-      video.classList.add('sticky');
-    } else {
-      video.classList.remove('sticky');
-    }
-  });
-</script>
-
-
+  
   <div class="container">
     <p><span class="highlight">Leylix</span> ist die neue Generation von Event-Plattformen: sofort einsatzbereit, fair im Preis und gemacht für Vereine, Städte, Schulen & kreative Köpfe. <span class="highlight">Reservix</span> ist etabliert – aber auch langsam, teuer und unflexibel. Hier ist der direkte Vergleich.</p>
 
@@ -232,5 +219,19 @@
       document.getElementById('leylixOverlayContainer').style.display = 'none';
     }
   </script>
+
+<script>
+  const video = document.getElementById('leylixPlayer');
+  const offset = video.offsetTop;
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > offset + 200) {
+      video.classList.add('sticky');
+    } else {
+      video.classList.remove('sticky');
+    }
+  });
+</script>
+  
 </body>
 </html>
