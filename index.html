@@ -1027,43 +1027,6 @@ function showInfo(title, description) {
 }
 
 </script>
-
-<footer>
-  <p style="text-align:center; font-size:0.9rem;">
-    <a href="#" onclick="toggleAboutPopup(); return false;" style="text-decoration:none; font-weight:500; color:#444; border-bottom:1px solid #aaa;">
-      Über Leylix & Vuneco
-    </a>
-  </p>
-</footer>
-  
-  <p>© 2021–<script>document.write(new Date().getFullYear())</script> Leylix – Alle Rechte vorbehalten</p>
-</footer>
-
-<div id="aboutPopup" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:white; padding:30px; border-radius:16px; box-shadow:0 0 30px rgba(0,0,0,0.2); z-index:9999; max-width:90%; width:500px; text-align:center;">
-  <h3 style="margin-top:0;">Über Leylix & Vuneco</h3>
-  <p>Erfahre, wer hinter Leylix steckt – und wie VuneCoin, KYC und Events zusammengehören.</p>
-  <a href="https://seo.leylix.com/about.html" target="_blank" style="display:inline-block; margin-top:15px; padding:10px 20px; background:#222; color:white; border-radius:8px; text-decoration:none;">Mehr erfahren</a><br/><br/>
-  <button onclick="closeAboutPopup()" style="margin-top:10px; padding:6px 12px; border:none; background:#d00000; color:white; border-radius:6px; font-weight:bold;">❌ Schließen</button>
-</div>
-<script>
-  function toggleAboutPopup() {
-    const popup = document.getElementById('aboutPopup');
-    popup.style.display = 'block';
-    popup.style.opacity = 0;
-    setTimeout(() => {
-      popup.style.opacity = 1;
-      popup.style.transition = 'opacity 0.3s ease';
-    }, 10);
-  }
-
-  function closeAboutPopup() {
-    const popup = document.getElementById('aboutPopup');
-    popup.style.opacity = 0;
-    setTimeout(() => {
-      popup.style.display = 'none';
-    }, 300);
-  }
-</script>
   
 </body>
 </html>
