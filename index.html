@@ -574,6 +574,68 @@ header img {
     transform: translateX(-50%);
   }
 }
+    .about-footer-button button {
+  background-color: #800000;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.about-footer-button button:hover {
+  background-color: #a00000;
+}
+
+.about-overlay {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease;
+}
+.about-overlay.active {
+  display: flex;
+}
+.about-content {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0 0 25px rgba(0,0,0,0.2);
+  animation: slideUp 0.4s ease;
+  text-align: center;
+}
+.about-content h2 {
+  margin-bottom: 20px;
+  color: #800000;
+}
+.about-content button {
+  margin-top: 25px;
+  padding: 10px 20px;
+  background-color: #800000;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.about-content button:hover {
+  background-color: #a00000;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0 } to { opacity: 1 }
+}
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0 }
+  to { transform: translateY(0); opacity: 1 }
+}
     
   </style>
 </head>
@@ -993,6 +1055,10 @@ function declineCookies() {
   </script>
   
 <footer class="footer">
+  <div class="about-footer-button">
+  <button id="openAboutBtn">Über Leylix</button>
+</div>
+
   <section>
   <h2 style="color: #111;">Leylix jetzt testen</h2>
   <p>
@@ -1027,24 +1093,13 @@ function showInfo(title, description) {
 }
 
 </script>
-
-<footer>
-  <p style="text-align:center; font-size:0.9rem;">
-    <a href="#" onclick="toggleAboutPopup(); return false;" style="text-decoration:none; font-weight:500; color:#444; border-bottom:1px solid #aaa;">
-      Über Leylix & Vuneco
-    </a>
-  </p>
-</footer>
+<div class="about-footer-button">
+  <button id="openAboutBtn">Über Leylix</button>
+</div>
   
   <p>© 2021–<script>document.write(new Date().getFullYear())</script> Leylix – Alle Rechte vorbehalten</p>
 </footer>
 
-<div id="aboutPopup" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:white; padding:30px; border-radius:16px; box-shadow:0 0 30px rgba(0,0,0,0.2); z-index:9999; max-width:90%; width:500px; text-align:center;">
-  <h3 style="margin-top:0;">Über Leylix & Vuneco</h3>
-  <p>Erfahre, wer hinter Leylix steckt – und wie VuneCoin, KYC und Events zusammengehören.</p>
-  <a href="https://seo.leylix.com/about.html" target="_blank" style="display:inline-block; margin-top:15px; padding:10px 20px; background:#222; color:white; border-radius:8px; text-decoration:none;">Mehr erfahren</a><br/><br/>
-  <button onclick="closeAboutPopup()" style="margin-top:10px; padding:6px 12px; border:none; background:#d00000; color:white; border-radius:6px; font-weight:bold;">❌ Schließen</button>
-</div>
 <script>
   function toggleAboutPopup() {
     const popup = document.getElementById('aboutPopup');
