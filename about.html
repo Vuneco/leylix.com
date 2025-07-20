@@ -53,55 +53,7 @@
       color: #111;
     }
 
-    .open-btn {
-      display: inline-block;
-      margin: 30px auto;
-      padding: 12px 24px;
-      font-size: 1rem;
-      background-color: #222;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .open-btn:hover {
-      background-color: #444;
-    }
-
-    .about-container {
-      max-width: 920px;
-      margin: 40px auto;
-      background: white;
-      border-radius: 18px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      padding: 40px 50px;
-      line-height: 1.6;
-      font-size: 1.05rem;
-      display: none;
-      opacity: 0;
-      transform: scale(0.95);
-      transition: opacity 0.4s ease, transform 0.4s ease;
-    }
-
-    .about-container.visible {
-      display: block;
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    .about-container h2 {
-      margin-top: 40px;
-      font-size: 1.4rem;
-      color: #111;
-    }
-
-    .about-container ul {
-      padding-left: 20px;
-      margin-top: 10px;
-    }
-
+    
     .close-btn {
       display: inline-block;
       margin-top: 30px;
@@ -215,16 +167,10 @@
   <p>
     <a href="https://leylix.com" style="text-decoration: none; font-weight: 500; color: #222; border-bottom: 1px solid #aaa;">Zurück zu Leylix</a>
   </p>
-  <a href="https://seo.leylix.com/about.html" target="_blank" rel="noopener">About Leylix</a>
 </footer>
 
 <script>
-  function openAbout() {
-    const box = document.getElementById('aboutBox');
-    box.classList.add('visible');
-    window.scrollTo({ top: box.offsetTop - 20, behavior: 'smooth' });
-  }
-
+  
   function closeAbout() {
     const box = document.getElementById('aboutBox');
     box.classList.remove('visible');
