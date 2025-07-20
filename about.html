@@ -42,11 +42,27 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
 
-    header img {
-      height: 60px;
+   .header-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      flex-wrap: wrap;
       margin-bottom: 10px;
     }
 
+    .header-logos img {
+      height: 60px;
+      border-radius: 10px;
+      padding: 6px;
+      background-color: #111;
+    }
+
+    .header-logos img:first-child,
+    .header-logos img:last-child {
+      background-color: transparent;
+      padding: 0;
+    }
     header h1 {
       font-size: 1.8rem;
       margin: 0;
@@ -82,9 +98,14 @@
 <body>
 
 <header>
-  <img src="https://leylix.com/assets/LeylixColored5125.png" alt="Leylix Logo" />
+  <div class="header-logos">
+    <img src="https://leylix.com/assets/LeylixColored5125.png" alt="Leylix Logo" />
+    <img src="https://vcard.vuneco.com/avatars/vuneco-white.png" alt="Vuneco Logo" />
+    <img src="https://leylix.com/assets/VuneCoinLogoTradeMark--PNG.png" alt="VuneCoin Logo" />
+  </div>
   <h1>Über Leylix, Vuneco & VuneCoin</h1>
 </header>
+
 
   <h2>Wer wir sind</h2>
   <p><strong>Vuneco GmbH</strong> ist ein deutsches Softwareunternehmen mit Sitz in Nordrhein-Westfalen. Gegründet von <strong>Esat Vurcak</strong>, steht Vuneco für innovative Plattformen, die reale Bedürfnisse mit moderner Technologie verbinden. Mit Projekten wie <strong>Leylix</strong> und <strong>VuneCoin</strong> gestalten wir die Zukunft digitaler Events, Blockchain-Zahlungen und Identitätsprüfung neu.</p>
