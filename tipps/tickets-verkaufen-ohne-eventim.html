@@ -414,5 +414,24 @@ Nur du und dein Event – so wie du es willst.</p>
 
 </footer>
 
+<!-- Lenis Smooth Scrolling Library -->
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.35/bundled/lenis.min.js"></script>
+<script>
+  const lenis = new Lenis({
+    duration: 1.2,        // Geschwindigkeit (je höher, desto smoother)
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // sanfte Kurve
+    smooth: true,
+    smoothTouch: false    // wenn true → auch Touch-Screen super smooth
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+
+  requestAnimationFrame(raf);
+</script>
+
+  
 </body>
 </html>
