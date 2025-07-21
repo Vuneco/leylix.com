@@ -248,41 +248,7 @@
       width: auto;
       max-width: 100px;
     }
-    #leylixOverlayContainer {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: #0d0d0d; /* <-- HIER ersetzt */
-  display: none;
-  z-index: 99999;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  animation: fadeIn 0.4s ease-in-out;
-}
-    #leylixOverlayContainer iframe {
-      width: 90%;
-      height: 80%;
-      border: none;
-      border-radius: 1rem;
-      box-shadow: 0 0 25px rgba(0,0,0,0.6);
-    }
-    #leylixOverlayContainer .close-btn {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      font-size: 2rem;
-      background: none;
-      border: none;
-      color: #fff;
-      cursor: pointer;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
+   
 
 .video-wrapper.sticky {
   position: fixed;
@@ -299,6 +265,71 @@
   width: 100%;
   height: auto;
 }
+
+    .about-button {
+    background-color: #800000;
+    color: #fff;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+  }
+  .about-button:hover {
+    background-color: #a00000;
+  }
+
+  .about-overlay {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background-color: rgba(0,0,0,0.7);
+  backdrop-filter: blur(6px);
+  animation: fadeIn 0.8s ease-in-out;
+}
+   
+
+.about-modal {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 95%;
+  max-width: 1200px;
+  height: 90%;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  animation: slideUp 0.8s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+    
+
+.about-modal iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+  .close-about {
+    position: absolute;
+    top: 8px; right: 12px;
+    background: transparent;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes slideUp {
+    from { transform: translate(-50%, 100%); }
+    to { transform: translate(-50%, -50%); }
+  }
 
     
   </style>
@@ -341,16 +372,7 @@
     <h2>Fazit</h2>
     <p><strong>Reservix</strong> ist für große Theaterhäuser gemacht. <strong>Leylix</strong> ist für dich. Schnell. Ehrlich. Smart. Und gemacht für die echte Welt da draußen.</p>
 
-    <p style="text-align:center; margin-top: 2rem;">
-      <a href="#" onclick="showLeylixOverlay()" style="background:#00ffcc; color:#000; padding:1rem 2rem; text-decoration:none; font-weight:bold; border-radius:0.5rem;">Jetzt Leylix entdecken</a>
-    </p>
-  </div>
-
-  <div id="leylixOverlayContainer">
-    <button class="close-btn" onclick="hideLeylixOverlay()">&times;</button>
-    <iframe src="https://leylix.com" allowfullscreen></iframe>
-  </div>
-
+    
   <footer>
   
   
@@ -389,16 +411,81 @@
 <p>© 2021–<script>document.write(new Date().getFullYear())</script> Leylix – Alle Rechte vorbehalten</p>
 </footer>
 
+<div id="aboutModal" style="
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 1rem;
+  border-radius: 12px;
+  width: 95%;
+  max-width: 1200px;
+  height: 90%;
+  z-index: 1001;
+  overflow: hidden;
+">
+  <iframe src="https://seo.leylix.com/about.html" style="
+    width: 100%;
+    height: 100%;
+    border: none;
+  "></iframe>
+
+  <div style="
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1002;
+    background: rgba(255,255,255,0.9);
+    padding: 6px 10px;
+    border-radius: 6px;
+  ">
+    <button onclick="closeAbout()" style="
+      background: #800000;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    ">Schließen</button>
+  </div>
+</div>
 
   <script>
-    function showLeylixOverlay() {
-      document.getElementById('leylixOverlayContainer').style.display = 'flex';
-    }
-    function hideLeylixOverlay() {
-      document.getElementById('leylixOverlayContainer').style.display = 'none';
-    }
-  </script>
+document.getElementById('aboutBtn').addEventListener('click', function() {
+  document.getElementById('aboutOverlay').style.display = 'block';
+  document.getElementById('aboutModal').style.display = 'block';
+});
 
+function closeAbout() {
+  document.getElementById('aboutOverlay').style.display = 'none';
+  document.getElementById('aboutModal').style.display = 'none';
+}
+</script>
+
+  <script>
+  const aboutBtn = document.getElementById("aboutBtn");
+  const aboutOverlay = document.getElementById("aboutOverlay");
+  const closeAbout = document.getElementById("closeAbout");
+
+  if (aboutBtn && aboutOverlay && closeAbout) {
+    aboutBtn.addEventListener("click", () => {
+      aboutOverlay.style.display = "block";
+    });
+
+    closeAbout.addEventListener("click", () => {
+      aboutOverlay.style.display = "none";
+    });
+
+    // Optional: Klicken außerhalb des Modals schließt Fenster
+    window.addEventListener("click", (e) => {
+      if (e.target === aboutOverlay) {
+        aboutOverlay.style.display = "none";
+      }
+    });
+  }
+    
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const video = document.getElementById("leylixPlayer");
