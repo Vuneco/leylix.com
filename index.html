@@ -1066,15 +1066,34 @@ function declineCookies() {
     <a href="https://leylix.com">Hier geht’s zur Hauptplattform von Leylix</a> – dort findest du Events, Ticketverkauf, Sponsoring und alles, was eine moderne Eventplattform braucht.
   </p>
 
-  <div id="aboutOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:1000;"></div>
-<footer>
-    <div class="footer-about-link">
-  <button id="aboutBtn" class="about-button">Über Leylix</button>
-</div>
-   
-  <script>
+  
+  <footer style="text-align: center; margin-top: 40px;">
+  <button id="aboutBtn" class="about-button" style="background:#800000; color:#fff; border:none; padding:0.5rem 1rem; border-radius:5px; cursor:pointer;">Über Leylix</button>
+  <p style="margin-top: 10px;">© 2021–<script>document.write(new Date().getFullYear())</script> Leylix – Alle Rechte vorbehalten</p>
+</footer>
 
-    <p>© 2021–<script>document.write(new Date().getFullYear())</script> Leylix – Alle Rechte vorbehalten</p>
+<div id="aboutOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:1000;"></div>
+
+<div id="aboutModal" style="
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 1rem;
+  border-radius: 12px;
+  width: 95%;
+  max-width: 1200px;
+  height: 90%;
+  z-index: 1001;
+  overflow: hidden;
+">
+  <iframe src="https://seo.leylix.com/about.html" style="width: 100%; height: 100%; border: none;"></iframe>
+  <div style="position: absolute; bottom: 20px; right: 20px; z-index: 1002;">
+    <button onclick="closeAbout()" style="background: #800000; color: #fff; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">Schließen</button>
+  </div>
+</div>
 
     
 let lastInfoTitle = null;
@@ -1101,29 +1120,6 @@ function showInfo(title, description) {
   lastInfoTitle = title;
 }
 
-    
-
-<div id="aboutModal" style="
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: #fff;
-  padding: 1rem;
-  border-radius: 12px;
-  width: 95%;
-  max-width: 1200px;
-  height: 90%;
-  z-index: 1001;
-  overflow: hidden;
-">
-  <iframe src="https://seo.leylix.com/about.html" style="
-    width: 100%;
-    height: 100%;
-    border: none;
-  "></iframe>
-
   <div style="
     position: absolute;
     bottom: 20px;
@@ -1145,15 +1141,28 @@ function showInfo(title, description) {
 </div>
 
   <script>
-document.getElementById('aboutBtn').addEventListener('click', function() {
-  document.getElementById('aboutOverlay').style.display = 'block';
-  document.getElementById('aboutModal').style.display = 'block';
-});
+  const aboutBtn = document.getElementById("aboutBtn");
+  const aboutOverlay = document.getElementById("aboutOverlay");
+  const aboutModal = document.getElementById("aboutModal");
 
-function closeAbout() {
-  document.getElementById('aboutOverlay').style.display = 'none';
-  document.getElementById('aboutModal').style.display = 'none';
-}
+  if (aboutBtn && aboutOverlay && aboutModal) {
+    aboutBtn.addEventListener("click", () => {
+      aboutOverlay.style.display = "block";
+      aboutModal.style.display = "block";
+    });
+
+    window.addEventListener("click", (e) => {
+      if (e.target === aboutOverlay) {
+        aboutOverlay.style.display = "none";
+        aboutModal.style.display = "none";
+      }
+    });
+  }
+
+  function closeAbout() {
+    aboutOverlay.style.display = "none";
+    aboutModal.style.display = "none";
+  }
 </script>
   
 <script>
