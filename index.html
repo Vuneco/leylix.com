@@ -574,10 +574,6 @@ header img {
     transform: translateX(-50%);
   }
 }
-.footer-about-link {
-    text-align: center;
-    margin-top: 30px;
-  }
     
     .about-button {
     background-color: #800000;
@@ -1062,24 +1058,21 @@ function declineCookies() {
     });
   </script>
 
-  <div id="aboutOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:1000;"></div>
+  
  
   <h2 style="color: #111;">Leylix jetzt testen</h2>
   <p>
     Du willst selbst sehen, warum Leylix besser ist als Eventim, Reserix oder ticket.io?
     <a href="https://leylix.com">Hier geht’s zur Hauptplattform von Leylix</a> – dort findest du Events, Ticketverkauf, Sponsoring und alles, was eine moderne Eventplattform braucht.
   </p>
-   
+
+  <div id="aboutOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:1000;"></div>
    <div class="footer-about-link">
   <button id="aboutBtn" class="about-button">Über Leylix</button>
 </div>
 
-  <button onclick="openAbout()" style="background: none; border: none; color: #fff; cursor: pointer;">
-  Über Leylix
-</button>
-
 <p>© 2021–<script>document.write(new Date().getFullYear())</script> Leylix – Alle Rechte vorbehalten</p>
-    
+    </footer>
 
 
   <script>
