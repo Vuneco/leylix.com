@@ -1153,29 +1153,7 @@ function closeAbout() {
   document.getElementById('aboutModal').style.display = 'none';
 }
 </script>
-
-  <script>
-  const aboutBtn = document.getElementById("aboutBtn");
-  const aboutOverlay = document.getElementById("aboutOverlay");
-  const closeAbout = document.getElementById("closeAbout");
-
-  if (aboutBtn && aboutOverlay && closeAbout) {
-    aboutBtn.addEventListener("click", () => {
-      aboutOverlay.style.display = "block";
-    });
-
-    closeAbout.addEventListener("click", () => {
-      aboutOverlay.style.display = "none";
-    });
-
-    // Optional: Klicken außerhalb des Modals schließt Fenster
-    window.addEventListener("click", (e) => {
-      if (e.target === aboutOverlay) {
-        aboutOverlay.style.display = "none";
-      }
-    });
-  }
-    </script) 
+  
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const video = document.getElementById("leylixPlayer");
