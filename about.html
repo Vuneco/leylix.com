@@ -23,11 +23,6 @@
 <meta content="Leylix ist die Plattform für echte Events – mit Wallet, Sponsoring, KYC &amp; VuneCoin." name="twitter:description"/>
 <meta content="https://leylix.com/assets/preview.jpg" name="twitter:image"/>
 <style>
-
-html {
-  scroll-behavior: smooth;
-}
-  
   body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
@@ -109,24 +104,6 @@ html {
     color: #666;
   }
 </style>
-
-<script src="https://unpkg.com/@studio-freight/lenis@1.0.35/bundled/lenis.min.js"></script>
-<script>
-  const lenis = new Lenis({
-    duration: 1.2,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    smooth: true,
-    smoothTouch: false
-  })
-
-  function raf(time) {
-    lenis.raf(time)
-    requestAnimationFrame(raf)
-  }
-
-  requestAnimationFrame(raf)
-</script>
-  
 </head>
 <body>
 <div class="container"><div class="content-block"><h2>Über Leylix, Vuneco &amp; VuneCoin</h2></div><div class="content-block"><h2>Wer wir sind</h2><p><strong>Vuneco GmbH</strong> ist ein deutsches Softwareunternehmen mit Sitz in Nordrhein-Westfalen. Gegründet von <strong>Esat Vurcak</strong>, steht Vuneco für innovative Plattformen, die reale Bedürfnisse mit moderner Technologie verbinden. Mit Projekten wie <strong>Leylix</strong> und <strong>VuneCoin</strong> gestalten wir die Zukunft digitaler Events, Blockchain-Zahlungen und Identitätsprüfung neu.</p><a class="btn-leylix" href="https://leylix.com" target="_blank">Zu Leylix</a></div><div class="content-block"><h2>Leylix – Die digitale Eventwelt</h2><p><strong>Leylix</strong> ist eine Plattform zur Entdeckung, Buchung und Verwaltung von Events – von privaten Veranstaltungen bis hin zu professionellen Workshops, Vereinsaktionen oder gesponserten Großevents.  
@@ -164,8 +141,25 @@ html {
 </header>
 <footer>
 </footer>
+//smooze scrolling
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.18/bundled/lenis.min.js"></script>
+<script>
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smooth: true
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+
+  requestAnimationFrame(raf);
+</script>
 </body>
 </html>
+
 
 </body>
 </html>
