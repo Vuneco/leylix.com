@@ -332,26 +332,39 @@ img.responsive-img:hover {
   <h2>📣 Lokale Sichtbarkeit für dein Projekt</h2>
   <p>Jedes Vereins-Event auf Leylix ist öffentlich auffindbar – ob Sommerfest, Turnier, Spendenlauf oder Infoabend. Mit wenigen Klicks können Unternehmen ihre Unterstützung anbieten. Die Plattform zeigt automatisch passende Sponsoring-Vorschläge an.</p>
 </div>
-
-<h2>🎥 Einblick in die App</h2>
-<div class="video-wrapper">
-  <video id="leylixVideo" poster="/assets/Leylix-Home.png">
-    <source src="/assets/LeylixVideo-.mp4" type="video/mp4">
-    Dein Browser unterstützt kein Video.
-  </video>
-  <div class="play-button" id="playBtn" onclick="document.getElementById('leylixVideo').play(); document.getElementById('playBtn').style.display='none'; document.getElementById('pauseBtn').style.display='block';">
-    <div class="play-icon"></div>
+<div class="section-box" style="text-align: center;">
+  <h2>🎥 Einblick in die App</h2>
+  <div class="video-wrapper" style="max-width: 300px; margin: 0 auto;">
+    <video id="leylixVideo" poster="/assets/Leylix-Home.png" style="border-radius: 12px;">
+      <source src="/assets/LeylixVideo-.mp4" type="video/mp4">
+      Dein Browser unterstützt kein Video.
+    </video>
+    <div class="play-button" id="playBtn" onclick="document.getElementById('leylixVideo').play(); document.getElementById('playBtn').style.display='none'; document.getElementById('pauseBtn').style.display='block';">
+      <div class="play-icon"></div>
+    </div>
+  </div>
+  <div class="pause-button" id="pauseBtn" style="margin-top: 12px;">
+    <button onclick="document.getElementById('leylixVideo').pause(); document.getElementById('playBtn').style.display='block'; document.getElementById('pauseBtn').style.display='none';">⏸️ Pause</button>
   </div>
 </div>
-<div class="pause-button" id="pauseBtn">
-  <button onclick="document.getElementById('leylixVideo').pause(); document.getElementById('playBtn').style.display='block'; document.getElementById('pauseBtn').style.display='none';">⏸️ Pause</button>
+
+  <div class="section-box" style="text-align: center;">
+  <h2>📱 Leylix App Screens</h2>
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+    <img src="/assets/channel.png" alt="Channel" class="interactive-img" onclick="openLightbox(this.src)">
+    <img src="/assets/Channel2.png" alt="Channel 2" class="interactive-img" onclick="openLightbox(this.src)">
+    <img src="/assets/HomeScreen.png" alt="Home Screen" class="interactive-img" onclick="openLightbox(this.src)">
+    <img src="/assets/News.png" alt="News" class="interactive-img" onclick="openLightbox(this.src)">
+    <img src="/assets/SingleChat.png" alt="Single Chat" class="interactive-img" onclick="openLightbox(this.src)">
+  </div>
 </div>
 
-<img src="/assets/channel.png" alt="Channel" class="responsive-img">
-<img src="/assets/Channel2.png" alt="Channel 2" class="responsive-img">
-<img src="/assets/HomeScreen.png" alt="Home Screen" class="responsive-img">
-<img src="/assets/News.png" alt="News" class="responsive-img">
-<img src="/assets/SingleChat.png" alt="Single Chat" class="responsive-img">
+<!-- Lightbox Overlay -->
+<div id="lightboxOverlay" style="display: none;">
+  <span id="lightboxClose" onclick="closeLightbox()">×</span>
+  <img id="lightboxImg" src="">
+</div>
+
 
 <div class="section-box">
   <h2>🤝 Gegenseitige Unterstützung im Fokus</h2>
@@ -384,8 +397,6 @@ img.responsive-img:hover {
   <p>Wenn dein Verein nach Unterstützung sucht oder ein Unternehmen aus Deutschland Sponsoring betreiben will – Leylix ist die Brücke. Einfach registrieren, Event einstellen und mit wenigen Klicks zur Förderung kommen.</p>
   <p><a href="https://leylix.com" style="font-weight: bold; font-size: 1.1em;">Jetzt starten auf Leylix.com</a></p>
 </div>
-
-<p><a href="https://leylix.com">Jetzt starten auf Leylix.com</a></p>
 
 <hr>
 <p style="font-size: 0.9em; color: gray;">Mehr erfahren: <a href="/tickets/leylix-vs-eventim.html">Leylix vs Eventim</a> | <a href="/events/strassenfeste-aktuell.html">Straßenfeste aktuell</a></p>
