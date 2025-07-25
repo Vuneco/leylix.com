@@ -516,7 +516,8 @@ function closeAbout() {
   requestAnimationFrame(raf);
 </script>
 
-  <script>
+<script>
+  /*
   if (!localStorage.getItem("vunePopupShown")) {
     fetch("/includes/popup-vunecoin.html")
       .then(res => res.text())
@@ -527,7 +528,19 @@ function closeAbout() {
         localStorage.setItem("vunePopupShown", "true");
       });
   }
+  */
 </script>
+  
+  <script>
+  fetch("/includes/popup-vunecoin.html")
+    .then(res => res.text())
+    .then(html => {
+      const div = document.createElement("div");
+      div.innerHTML = html;
+      document.body.appendChild(div);
+    });
+</script>
+
 
 
 </body>
