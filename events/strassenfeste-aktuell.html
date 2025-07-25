@@ -541,6 +541,16 @@ function closeAbout() {
     });
 </script>
 
+  <script>
+  // Pop-up schließen, wenn man außerhalb klickt
+  document.addEventListener('click', function(event) {
+    const popup = document.getElementById('vunePopup');
+    if (popup && event.target === popup) {
+      popup.style.display = 'none';
+    }
+  });
+</script>
+
 
 
 </body>
