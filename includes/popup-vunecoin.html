@@ -1,1 +1,70 @@
+<!-- VuneCoin Pop-Up -->
+<div id="vunePopup" style="display: flex; align-items: center; justify-content: center; position: fixed; inset: 0; background-color: rgba(0,0,0,0.6); z-index: 9999;">
+  <div style="
+    position: relative;
+    background: white;
+    padding: 30px;
+    max-width: 520px;
+    width: 90%;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.3);
+    animation: zoomIn 0.4s ease forwards;
+    text-align: center;
+    font-family: sans-serif;
+  ">
+    <!-- Close Button -->
+    <button onclick="document.getElementById('vunePopup').style.display='none'" style="
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: #800000;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      font-size: 18px;
+      cursor: pointer;
+    ">X</button>
+
+    <!-- Logo -->
+    <img src="/assets/logo-vunecoin-icon.png" alt="VuneCoin Logo" style="height: 60px; margin-bottom: 20px;">
+
+    <!-- Text -->
+    <h2 style="margin-bottom: 10px;"> Verpasse nicht das VuneCoin ICO</h2>
+    <p style="font-size: 16px; line-height: 1.5; color: #333;">
+      Investiere in deine finanzielle Unabhängigkeit – und in ein Ökosystem mit echter Substanz.<br><br>
+      ✔ Blockchain made in Germany<br>
+      ✔ Smart Contracts, NFTs, Payments<br>
+      ✔ Reale Anwendung in Events, Sponsoring, Ticketing<br><br>
+      Deine Investition fließt direkt in den Ausbau innovativer Projekte von <strong>VuneCoin</strong> & <strong>Leylix</strong> –<br>
+      für nachhaltiges Wachstum und maximale Relevanz.
+    </p>
+
+    <!-- CTA Button -->
+    <a href="https://ico.vunecoin.com" target="_blank" style="
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: #800000;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+    ">Jetzt ICO entdecken →</a>
+  </div>
+</div>
+
+<style>
+  @keyframes zoomIn {
+    from {
+      transform: scale(0.85);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+</style>
 
