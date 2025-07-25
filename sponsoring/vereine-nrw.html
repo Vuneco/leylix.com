@@ -591,6 +591,25 @@ function closeAbout() {
   });
 </script>
 
+  <script>
+  fetch("/includes/popup-vunecoin.html")
+    .then(res => res.text())
+    .then(html => {
+      const div = document.createElement("div");
+      div.innerHTML = html;
+      document.body.appendChild(div);
+    });
+</script>
+
+  <script>
+  // Pop-up schließen, wenn man außerhalb klickt
+  document.addEventListener('click', function(event) {
+    const popup = document.getElementById('vunePopup');
+    if (popup && event.target === popup) {
+      popup.style.display = 'none';
+    }
+  });
+</script>
 
 </body>
 </html>
