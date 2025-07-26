@@ -240,14 +240,92 @@
       text-decoration: none;
       margin-top: 20px;
     }
+
+.logo-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  position: relative;
+  animation: fadeIn 0.8s ease-in;
+}
+
+.logo-banner div {
+  flex: 1;
+}
+
+.logo-left {
+  text-align: left;
+}
+.logo-center {
+  text-align: center;
+}
+.logo-right {
+  text-align: right;
+}
+
+.logo-banner img {
+  height: 50px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  cursor: pointer;
+}
+
+.logo-banner img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.15);
+}
+
+/* ✨ Leylix Glow Effekt */
+.ley-glow {
+  height: 65px;
+  filter: drop-shadow(0 0 6px rgba(75, 42, 173, 0.4));
+}
+
+/* 👻 Fade-In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+    
   </style>
 </head>
 <body>
 
+
+  <!-- 💎 LOGO-BEREICH MIT DESIGN-UPGRADES -->
 <div class="section-box">
+  <div class="logo-banner">
+    <!-- Link -->
+    <div class="logo-left">
+      <img src="/assets/logo-vuneco.png" alt="Vuneco Logo">
+    </div>
+
+    <!-- Mitte -->
+    <div class="logo-center">
+      <img src="/assets/logo-leylix.png" alt="Leylix Logo" class="ley-glow">
+    </div>
+
+    <!-- Rechts -->
+    <div class="logo-right">
+      <img src="/assets/logo-vunecoin.png" alt="VuneCoin Logo">
+    </div>
+  </div>
+
   <h1>Vergleich: Leylix vs. Reservix</h1>
-  <p>Reservix ist ein großer Ticketdienstleister – aber oft unflexibel, teuer und für kleine Events kaum nutzbar. Leylix hingegen ist eine moderne, digitale Eventplattform, die sich auf <strong>lokale Veranstaltungen, Sponsoring & Sichtbarkeit</strong> fokussiert. Hier siehst du, warum Leylix die bessere Wahl ist.</p>
+  <p>
+    Reservix ist ein großer Ticketdienstleister – aber oft unflexibel, teuer und für kleine Events kaum nutzbar.
+    Leylix hingegen ist eine moderne, digitale Eventplattform, die sich auf <strong>lokale Veranstaltungen, Sponsoring & Sichtbarkeit</strong> fokussiert.
+    Hier siehst du, warum Leylix die bessere Wahl ist.
+  </p>
 </div>
+
 
 <div class="section-box">
   <h2>⚖️ Direkter Vergleich</h2>
