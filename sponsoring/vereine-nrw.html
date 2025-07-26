@@ -314,6 +314,66 @@ img.responsive-img:hover {
   cursor: pointer;
   z-index: 10000;
 }
+    .logo-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  position: relative;
+  animation: fadeIn 0.8s ease-in;
+}
+
+.logo-banner div {
+  flex: 1;
+}
+
+.logo-left {
+  text-align: left;
+}
+.logo-center {
+  text-align: center;
+}
+.logo-right {
+  text-align: right;
+}
+
+.logo-banner img {
+  height: 50px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  cursor: pointer;
+}
+
+.logo-banner img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.15);
+}
+
+/* ✨ Leylix Glow Effekt */
+.ley-glow {
+  height: 65px;
+  filter: drop-shadow(0 0 6px rgba(75, 42, 173, 0.4));
+}
+
+/* 👻 Fade-In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+    #vunePopup {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+#vunePopup.show {
+  opacity: 1;
+}
 
 
     
@@ -344,16 +404,27 @@ img.responsive-img:hover {
   </script>
   
 </head>
-
-<header style="display: flex; justify-content: flex-start; align-items: center; padding: 20px;">
-  <a href="https://leylix.com">
-    <img src="/assets/LeylixColored5125.png" alt="Leylix Logo" style="height: 60px;">
-  </a>
-</header>
-  
 <body>
 
-  <div class="section-box">
+<!-- 💎 LOGO-BEREICH MIT DESIGN-UPGRADES -->
+<div class="section-box">
+  <div class="logo-banner">
+    <!-- Link -->
+    <div class="logo-left">
+      <img src="/assets/vuneco-colored.png" alt="Vuneco Logo">
+    </div>
+
+    <!-- Mitte -->
+    <div class="logo-center">
+      <img src="/assets/leylix-touch-icon.png" alt="Leylix Logo" class="ley-glow">
+    </div>
+
+    <!-- Rechts -->
+    <div class="logo-right">
+      <img src="/assets/logo-vunecoin-icon.png" alt="VuneCoin Logo">
+    </div>
+  </div>
+  
   <h1>Sponsoring für Vereine in NRW – Gemeinsam stark durch regionale Förderung</h1>
   <p>Ob Fußballverein, Kulturgruppe oder Jugendinitiative – viele Vereine in ganz Deutschland leisten Großartiges für unsere Gesellschaft. Doch oft fehlt es an Budget, um Events zu organisieren, Projekte umzusetzen oder Equipment anzuschaffen. Genau hier setzt Leylix an.</p>
 </div>
