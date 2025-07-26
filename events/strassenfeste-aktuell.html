@@ -616,6 +616,19 @@ function closeAbout() {
 </script>
 
   <script>
+  // ⏱️ Popup erscheint nach 5 Sekunden
+  window.addEventListener("load", function () {
+    setTimeout(function () {
+  const popup = document.getElementById("vunePopup");
+  if (popup) {
+    popup.style.display = "flex";
+    setTimeout(() => popup.classList.add("show"), 50);
+  }
+}, 5000); // 5000ms = 5 Sekunden
+  });
+</script>
+
+  <script>
   // Pop-up schließen, wenn man außerhalb klickt
   document.addEventListener('click', function(event) {
     const popup = document.getElementById('vunePopup');
