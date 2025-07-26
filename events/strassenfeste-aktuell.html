@@ -718,6 +718,49 @@ function closeAbout() {
     if (e.key === "Escape") closeLightbox();
   });
 </script>
+<script>
+  const translations = {
+    en: {
+      "headline": "Unleash the Excitement:",
+      "subline": "Join our conference now",
+      "login": "Login",
+      "about": "About",
+      "features": "Features",
+      "support": "Support"
+    },
+    de: {
+      "headline": "Entfessle die Aufregung:",
+      "subline": "Komm zu unserer Konferenz",
+      "login": "Anmelden",
+      "about": "Über",
+      "features": "Funktionen",
+      "support": "Support"
+    }
+  };
+
+  function setLanguage(lang) {
+    localStorage.setItem('lang', lang);
+    applyTranslations(lang);
+  }
+
+  function applyTranslations(lang) {
+    const t = translations[lang];
+    if (!t) return;
+
+    document.getElementById("headline").innerText = t.headline;
+    document.getElementById("subline").innerText = t.subline;
+    document.getElementById("nav-about").innerText = t.about;
+    document.getElementById("nav-features").innerText = t.features;
+    document.getElementById("nav-support").innerText = t.support;
+    document.getElementById("login-button").innerText = t.login;
+  }
+
+  // Auf Sprache aus LocalStorage reagieren
+  document.addEventListener("DOMContentLoaded", () => {
+    const savedLang = localStorage.getItem('lang') || 'de';
+    setLanguage(savedLang);
+  });
+</script>
 
 
 
