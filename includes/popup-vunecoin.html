@@ -1,31 +1,37 @@
 <!-- VuneCoin Pop-Up -->
 <div id="vunePopup" style="display: flex; align-items: center; justify-content: center; position: fixed; inset: 0; background-color: rgba(0,0,0,0.6); z-index: 9999;">
   <div style="
-    position: relative;
-    background: white;
-    padding: 30px;
-    max-width: 520px;
-    width: 90%;
-    border-radius: 20px;
-    box-shadow: 0 0 30px rgba(0,0,0,0.3);
-    animation: zoomIn 0.4s ease forwards;
-    text-align: center;
-    font-family: sans-serif;
-  ">
+  position: relative;
+  background: white;
+  padding: 30px 20px;
+  max-width: 520px;
+  width: 90%;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.3);
+  animation: zoomIn 0.4s ease forwards;
+  text-align: center;
+  font-family: sans-serif;
+  box-sizing: border-box;
+  overflow-x: hidden;
+">
+
     <!-- Close Button -->
     <button onclick="document.getElementById('vunePopup').style.display='none'" style="
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      background: #800000;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      font-size: 18px;
-      cursor: pointer;
-    ">X</button>
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #800000;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 999;
+">X</button>
+
 
     <!-- Logo -->
     <img src="/assets/logo-vunecoin-icon.png" alt="VuneCoin Logo" style="height: 60px; margin-bottom: 20px;">
