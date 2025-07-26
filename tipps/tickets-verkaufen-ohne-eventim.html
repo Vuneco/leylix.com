@@ -454,11 +454,12 @@ Kein teures Gebührenmodell. Kein Kontrollverlust. Kein Warten auf Freigaben.
   <li>⛔ Kein direkter Zugang zu den Käuferdaten</li>
 </ul>
 </div>
-<img src="/assets/SingleChat.png" alt="Leylix Chat" class="responsive-img">
 
+<div class="section-box">
 <h2>✅ Die Lösung: Dein eigenes Ticketing über Leylix</h2>
 <p>Mit Leylix bekommst du ein digitales Ticketsystem, das dir die volle Kontrolle gibt – von der Erstellung bis zum Einlass.</p>
-
+</div>
+<div class="section-box">  
 <ul>
   <li>🎫 Tickets erstellen & veröffentlichen in wenigen Minuten</li>
   <li>📱 Digitaler Verkauf über App, Website oder QR-Code</li>
@@ -467,9 +468,8 @@ Kein teures Gebührenmodell. Kein Kontrollverlust. Kein Warten auf Freigaben.
   <li>📈 Statistiken zu Verkäufen & Besucherstruktur</li>
   <li>🔒 Optional: Verifizierung der Teilnehmer (KYC)</li>
 </ul>
-
-<img src="/assets/News.png" alt="Leylix News" class="responsive-img">
-
+</div>
+<div class="section-box">
 <h2>💬 Was macht Leylix so besonders?</h2>
 <ul>
   <li>🚀 Kein Drittanbieter – alle Daten, Tickets und Zahlungen bleiben bei dir</li>
@@ -478,23 +478,42 @@ Kein teures Gebührenmodell. Kein Kontrollverlust. Kein Warten auf Freigaben.
   <li>📍 Events werden regional beworben – bei passenden Zielgruppen</li>
   <li>🧠 Leylix AI hilft dir beim Schreiben, Bewerben & Auswerten</li>
 </ul>
+</div>
 
-<img src="/assets/Channel2.png" alt="Leylix Channels" class="responsive-img">
-
-<h2>📈 Einblick in die App</h2>
-<div class="video-wrapper">
-  <video id="leylixVideo" poster="/assets/Leylix-Home.png">
-    <source src="/assets/LeylixVideo-.mp4" type="video/mp4">
-    Dein Browser unterstützt kein Video.
-  </video>
-<div class="play-button" id="playBtn" onclick="document.getElementById('leylixVideo').play(); document.getElementById('playBtn').style.display='none'; document.getElementById('pauseBtn').style.display='block';">
-    <div class="play-icon"></div>
+<div class="section-box" style="text-align: center;">
+  <h2>🎥 Einblick in die App</h2>
+  <div class="video-wrapper" style="max-width: 300px; margin: 0 auto;">
+    <video id="leylixVideo" poster="/assets/Leylix-Home.png" style="border-radius: 12px;">
+      <source src="/assets/LeylixVideo-.mp4" type="video/mp4">
+      Dein Browser unterstützt kein Video.
+    </video>
+    <div class="play-button" id="playBtn" onclick="document.getElementById('leylixVideo').play(); document.getElementById('playBtn').style.display='none'; document.getElementById('pauseBtn').style.display='block';">
+      <div class="play-icon"></div>
+    </div>
+  </div>
+  <div class="pause-button" id="pauseBtn" style="margin-top: 12px;">
+    <button onclick="document.getElementById('leylixVideo').pause(); document.getElementById('playBtn').style.display='block'; document.getElementById('pauseBtn').style.display='none';">⏸️ Pause</button>
   </div>
 </div>
-<div class="pause-button" id="pauseBtn">
-  <button onclick="document.getElementById('leylixVideo').pause(); document.getElementById('playBtn').style.display='block'; document.getElementById('pauseBtn').style.display='none';">⏸️ Pause</button>
+
+  <div class="section-box" style="text-align: center;">
+  <h2>📱 Leylix App Screens</h2>
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+    <img src="/assets/channel.png" alt="Channel" class="interactive-img" onclick="openLightbox(this.src)">
+    <img src="/assets/Channel2.png" alt="Channel 2" class="interactive-img" onclick="openLightbox(this.src)">
+    <img src="/assets/HomeScreen.png" alt="Home Screen" class="interactive-img" onclick="openLightbox(this.src)">
+    <img src="/assets/News.png" alt="News" class="interactive-img" onclick="openLightbox(this.src)">
+    <img src="/assets/SingleChat.png" alt="Single Chat" class="interactive-img" onclick="openLightbox(this.src)">
+  </div>
 </div>
 
+<!-- Lightbox Overlay -->
+<div id="lightboxOverlay" style="display: none;">
+  <span id="lightboxClose" onclick="closeLightbox()">×</span>
+  <img id="lightboxImg" src="">
+</div>
+
+<div class="section-box">
 <h2>🏁 Für wen ist das perfekt?</h2>
 <ul>
   <li>🎤 Kleine & mittlere Veranstalter</li>
@@ -502,9 +521,9 @@ Kein teures Gebührenmodell. Kein Kontrollverlust. Kein Warten auf Freigaben.
   <li>⚽ Vereine, die ihre Events selbst steuern wollen</li>
   <li>📢 Unabhängige Festivals & Community-Projekte</li>
 </ul>
+</div>
 
-<img src="/assets/channel.png" alt="Leylix Event Channel" class="responsive-img">
-
+<div class="section-box">
 <h2>📌 Vorteile gegenüber klassischen Plattformen</h2>
 <table border="1" cellpadding="6" style="border-collapse: collapse; margin-top: 10px;">
   <tr>
@@ -533,13 +552,15 @@ Kein teures Gebührenmodell. Kein Kontrollverlust. Kein Warten auf Freigaben.
     <td>✅</td>
   </tr>
 </table>
-
+</div>
+<div class="section-box">  
 <h2>📥 Jetzt Event starten</h2>
 <p>Teste Leylix kostenlos und überzeuge dich selbst. Kein Vertragszwang. Keine versteckten Kosten.  
 Nur du und dein Event – so wie du es willst.</p>
-
+</div>
+  <div class="section-box">
 <p><a href="https://leylix.com">Jetzt auf Leylix loslegen</a></p>
-
+  </div>
 <hr>
 <p style="font-size: 0.9em; color: gray;">Mehr erfahren:  
 <a href="/events/strassenfeste-aktuell.html">Straßenfeste aktuell</a> |  
@@ -678,5 +699,53 @@ function closeAbout() {
 
   requestAnimationFrame(raf);
 </script>
+
+<script>
+  function openLightbox(src) {
+    document.getElementById("lightboxImg").src = src;
+    document.getElementById("lightboxOverlay").style.display = "flex";
+  }
+  function closeLightbox() {
+    document.getElementById("lightboxOverlay").style.display = "none";
+    document.getElementById("lightboxImg").src = "";
+  }
+  window.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") closeLightbox();
+  });
+</script>
+
+  <script>
+  fetch("/includes/popup-vunecoin.html")
+    .then(res => res.text())
+    .then(html => {
+      const div = document.createElement("div");
+      div.innerHTML = html;
+      document.body.appendChild(div);
+    });
+</script>
+
+  <script>
+  // Pop-up schließen, wenn man außerhalb klickt
+  document.addEventListener('click', function(event) {
+    const popup = document.getElementById('vunePopup');
+    if (popup && event.target === popup) {
+      popup.style.display = 'none';
+    }
+  });
+</script>
+
+  <script>
+  // ⏱️ Popup erscheint nach 5 Sekunden
+  window.addEventListener("load", function () {
+    setTimeout(function () {
+  const popup = document.getElementById("vunePopup");
+  if (popup) {
+    popup.style.display = "flex";
+    setTimeout(() => popup.classList.add("show"), 50);
+  }
+}, 5000); // 5000ms = 5 Sekunden
+  });
+</script>
+   
 </body>
 </html>
