@@ -353,6 +353,59 @@ img.responsive-img:hover {
 #vunePopup.show {
   opacity: 1;
 }
+
+    .logo-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  position: relative;
+  animation: fadeIn 0.8s ease-in;
+}
+
+.logo-banner div {
+  flex: 1;
+}
+
+.logo-left {
+  text-align: left;
+}
+.logo-center {
+  text-align: center;
+}
+.logo-right {
+  text-align: right;
+}
+
+.logo-banner img {
+  height: 50px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  cursor: pointer;
+}
+
+.logo-banner img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.15);
+}
+
+/* ✨ Leylix Glow Effekt */
+.ley-glow {
+  height: 65px;
+  filter: drop-shadow(0 0 6px rgba(75, 42, 173, 0.4));
+}
+
+/* 👻 Fade-In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
     
   </style>
 
