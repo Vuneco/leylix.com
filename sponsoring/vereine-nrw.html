@@ -711,19 +711,14 @@ function closeAbout() {
   });
 </script>
 
-  <!-- GANZ UNTEN IN DER HAUPTSEITE -->
-<script>
-  // === Popup anzeigen ===
-  document.getElementById("vunePopup").style.display = "block";
-
-  // === Countdown einfügen ===
-  const script = document.createElement("script");
-  script.innerHTML = `
-    const targetDate = new Date("2025-08-30T23:59:59").getTime();
+  <script>
+  setTimeout(() => {
     const countdown = document.getElementById("countdown");
+    if (!countdown) return;
 
-    function updateCountdown() {
-      if (!countdown) return;
+    const targetDate = new Date("2025-08-30T23:59:59").getTime();
+
+    const updateCountdown = () => {
       const now = new Date().getTime();
       const distance = targetDate - now;
 
@@ -737,14 +732,14 @@ function closeAbout() {
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      countdown.innerHTML = \`\${days}d \${hours}h \${minutes}m \${seconds}s\`;
-    }
+      countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    };
 
     setInterval(updateCountdown, 1000);
     updateCountdown();
-  `;
-  document.body.appendChild(script);
+  }, 5500); // wartet 5,5 Sekunden bis Popup im DOM sichtbar ist
 </script>
+
 
 </body>
 </html>
