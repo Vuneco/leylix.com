@@ -157,9 +157,13 @@
 <p id="copyrightText" style="font-size: 12px; color: #999; text-align: center; margin-top: 2px;"></p>
 
 <script>
-  const yearNow = new Date().getFullYear();
-  document.getElementById("copyrightText").innerText = `© 2021–${yearNow} Vuneco GmbH · All rights reserved · Powered by VuneCoin`;
+  document.addEventListener("DOMContentLoaded", () => {
+    const yearNow = new Date().getFullYear();
+    document.getElementById("copyrightText").innerText =
+      `© 2021–${yearNow} Vuneco GmbH · All rights reserved · Powered by VuneCoin`;
+  });
 </script>
+
     
   <style>
   @keyframes pulse {
