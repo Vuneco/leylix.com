@@ -711,5 +711,40 @@ function closeAbout() {
   });
 </script>
 
+  <!-- GANZ UNTEN IN DER HAUPTSEITE -->
+<script>
+  // === Popup anzeigen ===
+  document.getElementById("vunePopup").style.display = "block";
+
+  // === Countdown einfügen ===
+  const script = document.createElement("script");
+  script.innerHTML = `
+    const targetDate = new Date("2025-08-30T23:59:59").getTime();
+    const countdown = document.getElementById("countdown");
+
+    function updateCountdown() {
+      if (!countdown) return;
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        countdown.innerHTML = "✅ Der ICO ist gestartet!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = \`\${days}d \${hours}h \${minutes}m \${seconds}s\`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  `;
+  document.body.appendChild(script);
+</script>
+
 </body>
 </html>
