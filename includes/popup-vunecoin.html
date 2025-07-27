@@ -60,32 +60,38 @@
   display: inline-block;
   border: 1px solid #80000033;
 "></div>
+ 
+    <section class="section-box-glow" style="text-align: center;">
+  <h3 style="font-size: 24px; margin-bottom: 10px; color: #800000;">
+    Jetzt investieren – der Countdown läuft
+  </h3>
+  <div id="countdown" style="font-size: 32px; font-weight: bold; margin-bottom: 20px; color: #111;"></div>
+  <a href="https://ico.vunecoin.com" target="_blank" style="
+    display: inline-block;
+    background-color: #800000;
+    color: white;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    animation: pulseBtn 2s infinite;
+  ">Jetzt ICO entdecken</a>
+  <p style="margin-top: 20px; font-size: 12px; color: #777;">Countdown powered by Vuneco</p>
+</section>
 
-  <div style="text-align: center;">
-    <a href="https://ico.vunecoin.com" target="_blank" style="
-      display: inline-block;
-      padding: 12px 24px;
-      background: #800000;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      animation: pulse 2s infinite;
-    ">Jetzt vor dem Countdown investieren →</a>
-    <p style="margin-top: 10px; font-size: 12px; color: #666;">Countdown powered by Vuneco</p>
-  </div>
-</div>
   
     <script>
-  const targetDate = new Date("2025-08-15T23:59:59").getTime();
+  const targetDate = new Date("2025-08-30T23:59:59").getTime(); // ändern, wann immer du willst
+
   const countdown = document.getElementById("countdown");
 
   const updateCountdown = () => {
     const now = new Date().getTime();
     const distance = targetDate - now;
 
-    if (distance <= 0) {
-      countdown.innerHTML = "ICO läuft jetzt!";
+    if (distance < 0) {
+      countdown.innerHTML = "✅ Der ICO ist gestartet!";
       return;
     }
 
@@ -94,12 +100,13 @@
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    countdown.innerHTML = `${days} Tage ${hours} Std ${minutes} Min ${seconds} Sek`;
+    countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
   };
 
-  updateCountdown();
   setInterval(updateCountdown, 1000);
+  updateCountdown(); // initial aufrufen
 </script>
+
     
     <ul class="popup-list">
   <li>Blockchain made in Germany</li>
@@ -122,6 +129,22 @@
   <div id="vunePopup" style="display: flex; align-items: center; justify-content: center; position: fixed; inset: 0; background-color: rgba(0,0,0,0.6); z-index: 9999; overflow-y: auto; padding: 20px;">
 
 <style>
+  
+  .section-box-glow {
+    background: #fff8f8;
+    border-radius: 16px;
+    padding: 30px 20px;
+    margin: 30px 0;
+    border: 2px solid #80000033;
+    box-shadow: 0 0 25px rgba(128, 0, 0, 0.4);
+    animation: pulseShadow 3s ease-in-out infinite;
+  }
+
+  @keyframes pulseShadow {
+    0%   { box-shadow: 0 0 25px rgba(128, 0, 0, 0.4); }
+    50%  { box-shadow: 0 0 55px rgba(128, 0, 0, 0.9); }
+    100% { box-shadow: 0 0 25px rgba(128, 0, 0, 0.4); }
+  }
 
   @keyframes pulse {
     0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(128, 0, 0, 0.4); }
