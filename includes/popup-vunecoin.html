@@ -45,6 +45,44 @@
   mit klarer Vision, praktischen Anwendungen und starker Community.
 </p>
 
+<!-- Countdown Timer Section -->
+<section style="margin-top: 30px; text-align: center;">
+  <h3 style="font-size: 24px; margin-bottom: 10px; color: #800000;">Jetzt investieren – der Countdown läuft</h3>
+  <div id="countdown" style="font-size: 28px; font-weight: bold; margin-bottom: 20px; color: #222;"></div>
+
+  <!-- Pulsierender Button -->
+  <a href="https://ico.vunecoin.com" target="_blank" class="pulse-btn">
+    Zu VuneCoin ICO →
+  </a>
+
+  <p style="font-size: 12px; margin-top: 15px; color: #777;">Countdown powered by <strong>Vuneco</strong></p>
+</section>
+
+    <script>
+  const targetDate = new Date("2025-08-15T23:59:59").getTime();
+  const countdown = document.getElementById("countdown");
+
+  const updateCountdown = () => {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    if (distance <= 0) {
+      countdown.innerHTML = "ICO läuft jetzt!";
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    countdown.innerHTML = `${days} Tage ${hours} Std ${minutes} Min ${seconds} Sek`;
+  };
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
+    
     <ul class="popup-list">
   <li>Blockchain made in Germany</li>
   <li>Smart Contracts, NFTs, Payments</li>
@@ -121,6 +159,32 @@
     content: none !important;
   }
 </style>
+<style>
+  .pulse-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #800000;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 16px;
+    animation: pulse 1.8s infinite;
+    box-shadow: 0 0 10px rgba(128, 0, 0, 0.5);
+    transition: transform 0.2s;
+  }
+
+  .pulse-btn:hover {
+    transform: scale(1.05);
+  }
+
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(128,0,0, 0.6); }
+    70% { box-shadow: 0 0 20px 10px rgba(128,0,0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(128,0,0, 0); }
+  }
+</style>
+
 
   
 </style>
