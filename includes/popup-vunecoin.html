@@ -86,36 +86,7 @@
 
   <p style="margin-top: 12px; font-size: 13px; color: #666;">Countdown powered by Vuneco</p>
 </div>
-
-    
-  
-    <script>
-  const targetDate = new Date("2025-08-30T23:59:59").getTime(); // ändern, wann immer du willst
-
-  const countdown = document.getElementById("countdown");
-
-  const updateCountdown = () => {
-    const now = new Date().getTime();
-    const distance = targetDate - now;
-
-    if (distance < 0) {
-      countdown.innerHTML = "✅ Der ICO ist gestartet!";
-      return;
-    }
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-  };
-
-  setInterval(updateCountdown, 1000);
-  updateCountdown(); // initial aufrufen
-</script>
-
-    
+        
     <ul class="popup-list">
   <li>Blockchain made in Germany</li>
   <li>Smart Contracts, NFTs, Payments</li>
@@ -218,4 +189,30 @@
 
   
 </style>
+
+    <script>
+  const targetDate = new Date("2025-08-30T23:59:59").getTime(); // ändern, wann immer du willst
+
+  const countdown = document.getElementById("countdown");
+
+  const updateCountdown = () => {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    if (distance < 0) {
+      countdown.innerHTML = "✅ Der ICO ist gestartet!";
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  };
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown(); // initial aufrufen
+</script>
 
