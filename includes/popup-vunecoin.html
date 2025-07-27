@@ -22,20 +22,25 @@
 <div class="popup-header" style="
   position: sticky;
   top: 0;
-  background: white;
+  background: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
   border-bottom: 1px solid #ccc;
   z-index: 1000;
+  min-height: 60px; /* Wichtig: verhindert Überscrollen */
 ">
   <img src="/assets/logo-vunecoin-icon.png" alt="VuneCoin Logo" style="height: 60px; margin-bottom: 20px;" />
   <button onclick="document.getElementById('vunePopup').style.display='none'" style="
-    background: none;
+    background: #800000;
+    color: white;
     border: none;
-    font-size: 24px;
-    color: #800000;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+    line-height: 1;
     cursor: pointer;
   ">&times;</button>
 </div>
