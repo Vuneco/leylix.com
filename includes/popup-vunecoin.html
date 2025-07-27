@@ -11,10 +11,11 @@
   animation: zoomIn 0.4s ease forwards;
   text-align: center;
   font-family: sans-serif;
-  box-sizing: border-box;
-  overflow-x: hidden;
-">
 
+  overflow-y: auto;       /* ✅ Scrollen ermöglichen */
+  max-height: 90vh;       /* ✅ Begrenzung auf Bildschirmhöhe */
+  box-sizing: border-box; /* ✅ Kein Padding-Überlauf */
+">
     <!-- Close Button -->
     <button onclick="document.getElementById('vunePopup').style.display='none'" style="
   position: absolute;
