@@ -128,29 +128,7 @@
 
 <style>
 
-<script>
-  const countdownEl = document.getElementById("countdown");
 
-  function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = TARGET_DATE - now;
-
-    if (distance < 0) {
-      countdownEl.innerHTML = "Der ICO ist jetzt LIVE!";
-      return;
-    }
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-  }
-
-  setInterval(updateCountdown, 1000);
-  updateCountdown();
-</script>
 
   <div id="vunePopup" style="display: flex; align-items: center; justify-content: center; position: fixed; inset: 0; background-color: rgba(0,0,0,0.6); z-index: 9999; overflow-y: auto; padding: 20px;">
 
