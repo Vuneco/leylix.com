@@ -114,16 +114,15 @@
 }
 </style>
 
-
-    <script>
+<script>
   const targetDate = new Date("2025-08-30T23:59:59").getTime();
 
-  function updateCountdown() {
+  const updateCountdown = () => {
     const now = new Date().getTime();
     const distance = targetDate - now;
 
     if (distance < 0) {
-      document.getElementById("countdown").innerHTML = "✅ Der ICO ist gestartet!";
+      document.getElementById("countdown").innerHTML = "<span style='color: green;'>✅ Der ICO ist gestartet!</span>";
       return;
     }
 
@@ -136,12 +135,12 @@
     document.getElementById("hours").innerText = hours;
     document.getElementById("minutes").innerText = minutes;
     document.getElementById("seconds").innerText = seconds;
-  }
+  };
 
   setInterval(updateCountdown, 1000);
   updateCountdown();
 </script>
-    
+   
     <ul class="popup-list">
   <li>Blockchain made in Germany</li>
   <li>Smart Contracts, NFTs, Payments</li>
