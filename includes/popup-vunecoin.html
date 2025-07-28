@@ -148,16 +148,14 @@
 
 
     <script>
-  const targetDate = new Date("2025-08-30T23:59:59").getTime(); // ändern, wann immer du willst
+  const targetDate = new Date("2025-08-30T23:59:59").getTime();
 
-  const countdown = document.getElementById("countdown");
-
-  const updateCountdown = () => {
+  function updateCountdown() {
     const now = new Date().getTime();
     const distance = targetDate - now;
 
     if (distance < 0) {
-      countdown.innerHTML = "✅ Der ICO ist gestartet!";
+      document.getElementById("countdown").innerHTML = "✅ Der ICO ist gestartet!";
       return;
     }
 
@@ -166,11 +164,14 @@
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-  };
+    document.getElementById("days").innerText = days;
+    document.getElementById("hours").innerText = hours;
+    document.getElementById("minutes").innerText = minutes;
+    document.getElementById("seconds").innerText = seconds;
+  }
 
   setInterval(updateCountdown, 1000);
-  updateCountdown(); // initial aufrufen
+  updateCountdown();
 </script>
     
     <ul class="popup-list">
