@@ -123,40 +123,53 @@
 </style>
 
 <script>
-  const targetDate = new Date("2025-08-30T23:59:59").getTime();
-
-  const updateCountdown = () => {
-    const daysElem = document.getElementById("days");
-    const hoursElem = document.getElementById("hours");
-    const minutesElem = document.getElementById("minutes");
-    const secondsElem = document.getElementById("seconds");
-
-    if (!daysElem || !hoursElem || !minutesElem || !secondsElem) return;
-
-    const now = new Date().getTime();
-    const distance = targetDate - now;
-
-    if (distance < 0) {
-      daysElem.innerText = "0";
-      hoursElem.innerText = "0";
-      minutesElem.innerText = "0";
-      secondsElem.innerText = "0";
-      return;
+  // Starte Countdown erst, wenn das Popup sichtbar ist
+  const observer = new MutationObserver(() => {
+    const popup = document.getElementById("vunePopup");
+    if (popup && popup.style.display !== "none") {
+      startCountdown();
+      observer.disconnect();
     }
+  });
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  observer.observe(document.body, { attributes: true, childList: true, subtree: true });
 
-    daysElem.innerText = days;
-    hoursElem.innerText = hours;
-    minutesElem.innerText = minutes;
-    secondsElem.innerText = seconds;
-  };
+  function startCountdown() {
+    const targetDate = new Date("2025-08-30T23:59:59").getTime();
 
-  setInterval(updateCountdown, 1000);
-  updateCountdown();
+    const updateCountdown = () => {
+      const daysElem = document.getElementById("days");
+      const hoursElem = document.getElementById("hours");
+      const minutesElem = document.getElementById("minutes");
+      const secondsElem = document.getElementById("seconds");
+
+      if (!daysElem || !hoursElem || !minutesElem || !secondsElem) return;
+
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        daysElem.innerText = "0";
+        hoursElem.innerText = "0";
+        minutesElem.innerText = "0";
+        secondsElem.innerText = "0";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      daysElem.innerText = days;
+      hoursElem.innerText = hours;
+      minutesElem.innerText = minutes;
+      secondsElem.innerText = seconds;
+    };
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  }
 </script>
 
    
