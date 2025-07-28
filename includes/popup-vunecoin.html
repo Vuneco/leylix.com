@@ -143,7 +143,10 @@
 
     countdown.innerHTML = `${days} ${hours} ${minutes} ${seconds}`;
   };
-</script)
+  
+setInterval(updateCountdown, 1000);
+  updateCountdown(); // initial aufrufen
+</script>
    
     <ul class="popup-list">
   <li>Blockchain made in Germany</li>
