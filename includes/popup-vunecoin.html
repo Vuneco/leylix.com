@@ -124,16 +124,17 @@
 </style>
 
 <script>
-  const targetDate = new Date("2025-08-30T23:59:59").getTime(); // ändern, wann immer du willst
-
-  const countdown = document.getElementById("countdown");
+  const targetDate = new Date("2025-08-30T23:59:59").getTime();
 
   const updateCountdown = () => {
     const now = new Date().getTime();
     const distance = targetDate - now;
 
     if (distance < 0) {
-      countdown.innerHTML = "✅ Der ICO ist gestartet!";
+      document.getElementById("days").innerText = "0";
+      document.getElementById("hours").innerText = "0";
+      document.getElementById("minutes").innerText = "0";
+      document.getElementById("seconds").innerText = "0";
       return;
     }
 
@@ -142,12 +143,17 @@
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    countdown.innerHTML = `${days} ${hours} ${minutes} ${seconds}`;
+    // Nur die Textwerte in den vorhandenen divs ändern
+    document.getElementById("days").innerText = days;
+    document.getElementById("hours").innerText = hours;
+    document.getElementById("minutes").innerText = minutes;
+    document.getElementById("seconds").innerText = seconds;
   };
-  
-setInterval(updateCountdown, 1000);
-  updateCountdown(); // initial aufrufen
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
 </script>
+
    
     <ul class="popup-list">
   <li>Blockchain made in Germany</li>
