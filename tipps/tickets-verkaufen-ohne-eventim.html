@@ -749,15 +749,25 @@ function closeAbout() {
 </script>
 
   <script>
-  // ⏱️ Popup erscheint nach 5 Sekunden
   window.addEventListener("load", function () {
     setTimeout(function () {
-  const popup = document.getElementById("vunePopup");
-  if (popup) {
-    popup.style.display = "flex";
-    setTimeout(() => popup.classList.add("show"), 50);
-  }
-}, 5000); // 5000ms = 5 Sekunden
+      const popup = document.getElementById("vunePopup");
+      if (popup) {
+        popup.style.display = "flex";
+        setTimeout(() => popup.classList.add("show"), 50);
+        
+        // ✅ Stelle sicher, dass Body scrollbar bleibt
+        document.body.style.overflow = "auto";
+
+        // ✅ Scroll nur im Popup blockieren
+        const popupContent = popup.querySelector("div"); // das innere weiße Div
+        if (popupContent) {
+          popupContent.addEventListener("wheel", function (e) {
+            e.stopPropagation();
+          });
+        }
+      }
+    }, 5000); // ⏱️ Popup nach 5 Sekunden
   });
 </script>
 
