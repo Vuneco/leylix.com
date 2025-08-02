@@ -685,25 +685,27 @@ function closeAbout() {
 
   <script>
   window.addEventListener("load", function () {
-    setTimeout(function () {
-      const popup = document.getElementById("vunePopup");
-      if (popup) {
-        popup.style.display = "flex";
-        setTimeout(() => popup.classList.add("show"), 50);
-        
-        // ✅ Stelle sicher, dass Body scrollbar bleibt
-        document.body.style.overflow = "auto";
+  // ✅ Schon zu Beginn aktivieren – wichtig für mobile Geräte
+  document.body.style.overflow = "auto";
+  document.documentElement.style.overflow = "auto";
 
-        // ✅ Scroll nur im Popup blockieren
-        const popupContent = popup.querySelector("div"); // das innere weiße Div
-        if (popupContent) {
-          popupContent.addEventListener("wheel", function (e) {
-            e.stopPropagation();
-          });
-        }
+  setTimeout(function () {
+    const popup = document.getElementById("vunePopup");
+    if (popup) {
+      popup.style.display = "flex";
+      setTimeout(() => popup.classList.add("show"), 50);
+
+      // ❌ NICHT body.style.overflow ändern!
+      // ✅ Stattdessen: Pop-up gezielt scrollbar halten
+      const popupContent = popup.querySelector("div");
+      if (popupContent) {
+        popupContent.style.overflowY = "auto";
+        popupContent.style.maxHeight = "90vh";
       }
-    }, 5000); // ⏱️ Popup nach 5 Sekunden
-  });
+    }
+  }, 5000);
+});
+
 </script>
   
 <script>
