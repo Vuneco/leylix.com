@@ -684,29 +684,59 @@ function closeAbout() {
 </script>
 
   <script>
+  const lockBodyScroll = () => {
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden"; // auch wichtig für mobile
+    document.body.style.touchAction = "none";           // verhindert Scroll auf Touch-Geräten
+  };
+
+  const unlockBodyScroll = () => {
+    document.body.style.overflow = "auto";
+    document.documentElement.style.overflow = "auto";
+    document.body.style.touchAction = "auto";
+  };
+
   window.addEventListener("load", function () {
-  // ✅ Schon zu Beginn aktivieren – wichtig für mobile Geräte
-  document.body.style.overflow = "auto";
-  document.documentElement.style.overflow = "auto";
+    // Zuerst: Seite ist normal scrollbar
+    unlockBodyScroll();
 
-  setTimeout(function () {
-    const popup = document.getElementById("vunePopup");
-    if (popup) {
-      popup.style.display = "flex";
-      setTimeout(() => popup.classList.add("show"), 50);
+    setTimeout(function () {
+      const popup = document.getElementById("vunePopup");
+      if (popup) {
+        popup.style.display = "flex";
+        setTimeout(() => popup.classList.add("show"), 50);
 
-      // ❌ NICHT body.style.overflow ändern!
-      // ✅ Stattdessen: Pop-up gezielt scrollbar halten
-      const popupContent = popup.querySelector("div");
-      if (popupContent) {
-        popupContent.style.overflowY = "auto";
-        popupContent.style.maxHeight = "90vh";
+        // ❌ Jetzt Seite sperren
+        lockBodyScroll();
+
+        // ✅ Nur Pop-up scrollen lassen
+        const popupContent = popup.querySelector("div");
+        if (popupContent) {
+          popupContent.style.overflowY = "auto";
+          popupContent.style.maxHeight = "90vh";
+
+          // Wichtig für Desktop: Scroll nicht an Body weitergeben
+          popupContent.addEventListener("wheel", function (e) {
+            e.stopPropagation();
+          }, { passive: false });
+
+          // Wichtig für Mobile: Touch-Events auf Pop-up erlauben
+          popupContent.style.touchAction = "auto";
+        }
+
+        // ❌ Beim Klicken auf das Schließen-X → Pop-up zu und Scroll wieder frei
+        const closeBtn = popup.querySelector("button");
+        if (closeBtn) {
+          closeBtn.addEventListener("click", () => {
+            popup.style.display = "none";
+            unlockBodyScroll();
+          });
+        }
       }
-    }
-  }, 5000);
-});
-
+    }, 5000);
+  });
 </script>
+
   
 <script>
   const targetDate = new Date("2025-08-30T23:59:59").getTime();
