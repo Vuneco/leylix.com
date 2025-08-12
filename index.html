@@ -79,7 +79,7 @@
   "image": "https://vunecoin.com/assets/logo-vunecoin-icon.png",
   "description": "VuneCoin ist die Kryptowährung für Leylix & Web3-Zahlungen. VuneCoin ist die native Währung für Transaktionen innerhalb des Leylix-Ökosystems. Entwickelt von Vuneco GmbH für Events, Sponsoring, Wallets & NFT-Tickets.",
   "brand": {
-    "@type": "Organization",
+    "@type": "Brand",
     "name": "Vuneco GmbH",
     "url": "https://vuneco.com"
   },
@@ -96,6 +96,28 @@
     "seller": {
       "@type": "Organization",
       "name": "Vuneco GmbH"
+    },
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingRate": {
+        "@type": "MonetaryAmount",
+        "value": "0",
+        "currency": "USD"
+      },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 0,
+          "maxValue": 0,
+          "unitCode": "DAY"
+        }
+      }
+    },
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": "DE",
+      "returnPolicyCategory": "https://schema.org/NoReturnsAccepted"
     }
   },
   "isRelatedTo": {
@@ -1178,3 +1200,4 @@ function showInfo(title, description) {
   
 </body>
 </html>
+
