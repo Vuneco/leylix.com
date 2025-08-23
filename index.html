@@ -1230,45 +1230,37 @@ function showInfo(title, description) {
 
 
   <script>
-  function acceptCookies() {
-  localStorage.setItem("cookiesAccepted", Date.now()); // speichert Zeitpunkt
-  document.getElementById("cookie-bar").style.display = "none";
-  // Optional: Tracking aktivieren
-}
+  function shouldAskAgain() {
+    const lastAccepted = localStorage.getItem("cookiesAccepted");
+    if (!lastAccepted) return true;
 
-function declineCookies() {
-  localStorage.setItem("cookiesAccepted", "declined:" + Date.now()); // speichert Ablehnung mit Zeitstempel
-  document.getElementById("cookie-bar").style.display = "none";
-  // Optional: Tracking deaktivieren
-}
-
-function shouldAskAgain() {
-  const stored = localStorage.getItem("cookiesAccepted");
-  if (!stored) return true;
-
-  let timestamp;
-
-  if (stored.startsWith("declined:")) {
-    timestamp = parseInt(stored.split(":")[1]);
-  } else {
-    timestamp = parseInt(stored);
+    const sixMonths = 1000 * 60 * 60 * 24 * 30 * 6;
+    return (Date.now() - parseInt(lastAccepted)) > sixMonths;
   }
 
-  const sixMonths = 1000 * 60 * 60 * 24 * 30 * 6;
-  return (Date.now() - timestamp) > sixMonths;
-}
+  window.onload = function () {
+    if (shouldAskAgain()) {
+      document.getElementById("cookie-bar").style.display = "flex";
+    }
 
-window.onload = function () {
-  if (shouldAskAgain()) {
-    document.getElementById("cookie-bar").style.display = "flex";
-  }
-};
+    document.getElementById("accept-cookies").onclick = function () {
+      localStorage.setItem("cookiesAccepted", Date.now());
+      document.getElementById("cookie-bar").style.display = "none";
+    };
+
+    document.getElementById("decline-cookies").onclick = function () {
+      alert("Ohne Cookies können bestimmte Funktionen eingeschränkt sein.");
+      document.getElementById("cookie-bar").style.display = "none";
+    };
+  };
 </script>
+
 
 
   
 </body>
 </html>
+
 
 
 
