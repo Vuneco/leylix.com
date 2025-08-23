@@ -1225,50 +1225,51 @@ function showInfo(title, description) {
  
    
 
- <!-- Cookie-Bar (initial versteckt) -->
-<div id="cookie-bar" style="display:none; position:fixed; bottom:0; left:0; right:0; background:#000; color:#fff; padding:1.5rem; z-index:9999;">
-  <p>Diese Website verwendet Cookies, um dir das beste Nutzererlebnis zu bieten. Du kannst zustimmen oder ablehnen.</p>
-  <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
-    <button id="accept-cookies">Okay</button>
-    <button id="decline-cookies">Ablehnen</button>
-  </div>
+<div id="cookie-bar" style="display:none; position:fixed; bottom:0; left:0; right:0; background:#000; color:#fff; padding:1.5rem; z-index:9999; flex-direction:column; align-items:center; justify-content:center; text-align: center;">
+    <p>Diese Website verwendet Cookies, um Ihnen das beste Nutzererlebnis zu bieten.</p>
+    <div id="cookie-buttons" style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:1rem;">
+        <button id="accept-cookies" style="background:#4caf50; color:#fff; border:none; padding:10px 15px; cursor:pointer; border-radius:5px;">Akzeptieren</button>
+        <button id="decline-cookies" style="background:#f44336; color:#fff; border:none; padding:10px 15px; cursor:pointer; border-radius:5px;">Ablehnen</button>
+    </div>
 </div>
 
 <script>
-  // --- Consent Storage Helper ---
-  function shouldAskAgain() {
-    const last = localStorage.getItem("cookiesAcceptedAt");
-    if (!last) return true;
-    const sixMonths = 1000 * 60 * 60 * 24 * 30 * 6;
-    return (Date.now() - parseInt(last, 10)) > sixMonths;
-  }
-
-  // --- Show banner if needed ---
-  window.addEventListener("load", function () {
-    if (shouldAskAgain()) {
-      document.getElementById("cookie-bar").style.display = "flex";
-    }
-  });
-
-  // --- Wire buttons ---
-  document.addEventListener("click", function (e) {
-    if (e.target.id === "accept-cookies") {
-      localStorage.setItem("cookiesAcceptedAt", Date.now().toString());
-      // GA4 consent -> granted
-      if (typeof gtag === "function") {
-        gtag('consent', 'update', { 'analytics_storage': 'granted' });
-      }
-      document.getElementById("cookie-bar").style.display = "none";
+    // Funktion zum Überprüfen, ob die Cookie-Leiste angezeigt werden soll
+    function shouldAskAgain() {
+        const last = localStorage.getItem("cookiesAcceptedAt");
+        if (!last) {
+            return true; // Keine Zustimmung vorhanden, Leiste anzeigen
+        }
+        const sixMonths = 1000 * 60 * 60 * 24 * 30 * 6;
+        return (Date.now() - parseInt(last, 10)) > sixMonths; // Zustimmung älter als 6 Monate, erneut fragen
     }
 
-    if (e.target.id === "decline-cookies") {
-      // GA4 consent -> denied
-      if (typeof gtag === "function") {
-        gtag('consent', 'update', { 'analytics_storage': 'denied' });
-      }
-      document.getElementById("cookie-bar").style.display = "none";
-    }
-  });
+    // Zeigt die Leiste an, wenn die Seite geladen wird und die Bedingung erfüllt ist
+    document.addEventListener("DOMContentLoaded", function () {
+        if (shouldAskAgain()) {
+            document.getElementById("cookie-bar").style.display = "flex";
+        }
+    });
+
+    // Event-Handler für den "Akzeptieren"-Button
+    document.getElementById("accept-cookies").addEventListener("click", function () {
+        localStorage.setItem("cookiesAcceptedAt", Date.now().toString());
+        if (typeof gtag === "function") {
+            gtag('consent', 'update', { 'analytics_storage': 'granted' });
+            // WICHTIG: GA4-Konfiguration hier laden, damit Events gesendet werden
+            gtag('config', 'G-XXXXXXX'); // ERSETZEN Sie G-XXXXXXX mit Ihrer GA4 ID
+        }
+        document.getElementById("cookie-bar").style.display = "none";
+    });
+
+    // Event-Handler für den "Ablehnen"-Button
+    document.getElementById("decline-cookies").addEventListener("click", function () {
+        if (typeof gtag === "function") {
+            gtag('consent', 'update', { 'analytics_storage': 'denied' });
+        }
+        document.getElementById("cookie-bar").style.display = "none";
+    });
+
 </script>
 
 
@@ -1278,6 +1279,7 @@ function showInfo(title, description) {
   
 </body>
 </html>
+
 
 
 
