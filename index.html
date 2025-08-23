@@ -685,35 +685,47 @@ header img {
 }
 
     <style>
-  #cookie-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: #1a1a1a;
-    color: #fff;
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 9999;
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
-    font-family: Arial, sans-serif;
-  }
+  .cookie-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #000;
+  color: #fff;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 9999;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.5);
+  font-family: 'Goldman', sans-serif;
+}
 
-  #cookie-bar button {
-    background: #4caf50;
-    border: none;
-    padding: 0.5rem 1rem;
-    color: white;
-    font-weight: bold;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+.cookie-bar p {
+  margin: 1rem 0;
+  text-align: center;
+}
 
-  #cookie-bar button:hover {
-    background: #45a049;
-  }
+.cookie-bar button {
+  background: #fff;
+  color: #000;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.cookie-bar button:hover {
+  background: #f9c900;
+  color: #000;
+}
+
+.cookie-logo {
+  max-height: 40px;
+  margin-bottom: 0.5rem;
+}
 </style>
 
 
@@ -1250,10 +1262,15 @@ function showInfo(title, description) {
     });
   });
 </script>
+ 
 
-  <div id="cookie-bar" style="display: none;">
-  <span>Wir verwenden Cookies, um dein Erlebnis zu verbessern. Mit der Nutzung dieser Website stimmst du dem zu.</span>
-  <button onclick="acceptCookies()">Einverstanden</button>
+  <div class="cookie-bar" id="cookie-bar">
+  <img src="/assets/img/VuneCoinGoldmanWhite.png" alt="VuneCoin Logo" class="cookie-logo" />
+  <p>
+    Diese Website verwendet Cookies, um dir das beste Nutzererlebnis zu bieten. 
+    Durch die Nutzung dieser Seite erklärst du dich damit einverstanden.
+  </p>
+  <button onclick="acceptCookies()">Okay</button>
 </div>
 
 
@@ -1282,6 +1299,7 @@ function showInfo(title, description) {
   
 </body>
 </html>
+
 
 
 
