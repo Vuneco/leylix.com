@@ -1225,7 +1225,7 @@ function showInfo(title, description) {
  
    
 
-<div id="cookie-bar" style="display:flex; position:fixed; bottom:0; left:0; right:0; background:#000; color:#fff; padding:1.5rem; z-index:9999; flex-direction:column; align-items:center; justify-content:center; text-align: center;">
+<div id="cookie-bar" style="display:none; position:fixed; bottom:0; left:0; right:0; background:#000; color:#fff; padding:1.5rem; z-index:9999; flex-direction:column; align-items:center; justify-content:center; text-align: center;">
     <p>Diese Website verwendet Cookies, um Ihnen das beste Nutzererlebnis zu bieten.</p>
     <div id="cookie-buttons" style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:1rem;">
         <button id="accept-cookies" style="background:#4caf50; color:#fff; border:none; padding:10px 15px; cursor:pointer; border-radius:5px;">Akzeptieren</button>
@@ -1247,7 +1247,7 @@ function showInfo(title, description) {
     // Zeigt die Leiste an, wenn die Seite geladen wird und die Bedingung erfüllt ist
     document.addEventListener("DOMContentLoaded", function () {
         if (shouldAskAgain()) {
-            document.getElementById("cookie-bar").style.display = "flex";
+            document.getElementById("cookie-bar").style.display = "none";
         }
     });
 
@@ -1272,13 +1272,10 @@ function showInfo(title, description) {
 
 </script>
 
-
-
-
-
   
 </body>
 </html>
+
 
 
 
