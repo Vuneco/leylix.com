@@ -151,18 +151,26 @@
 
   
   <!-- Google Analytics 4 (GA4) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-N77C8ELCME"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){ dataLayer.push(arguments); }
 
   gtag('js', new Date());
+  gtag('consent', 'default', { 'analytics_storage': 'denied' });
 
-  // Initial: Analytics blockieren bis Zustimmung erfolgt
-  gtag('consent', 'default', {
-    'analytics_storage': 'denied'
-  });
-
+  // Optional: Wenn User schon früher zugestimmt hat, sofort auf granted setzen und config laden
+  (function () {
+    try {
+      const last = localStorage.getItem("cookiesAcceptedAt");
+      if (last) {
+        gtag('consent', 'update', { 'analytics_storage': 'granted' });
+        gtag('config', 'G-XXXXXXX'); // hier deine ID
+      }
+    } catch (e) {}
+  })();
+</script>
+<script>
   .platform-image {
   width: 100%;
   max-width: 300px;
@@ -1227,30 +1235,52 @@ function showInfo(title, description) {
 
 
 
- <script>
-  function shouldAskAgain() {
-    const lastAccepted = localStorage.getItem("cookiesAccepted");
-    if (!lastAccepted) return true;
+ <!-- Cookie-Bar (initial versteckt) -->
+<div id="cookie-bar" style="display:none; position:fixed; bottom:0; left:0; right:0; background:#000; color:#fff; padding:1.5rem; z-index:9999;">
+  <p>Diese Website verwendet Cookies, um dir das beste Nutzererlebnis zu bieten. Du kannst zustimmen oder ablehnen.</p>
+  <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+    <button id="accept-cookies">Okay</button>
+    <button id="decline-cookies">Ablehnen</button>
+  </div>
+</div>
 
+<script>
+  // --- Consent Storage Helper ---
+  function shouldAskAgain() {
+    const last = localStorage.getItem("cookiesAcceptedAt");
+    if (!last) return true;
     const sixMonths = 1000 * 60 * 60 * 24 * 30 * 6;
-    return (Date.now() - parseInt(lastAccepted)) > sixMonths;
+    return (Date.now() - parseInt(last, 10)) > sixMonths;
   }
 
-  window.onload = function () {
+  // --- Show banner if needed ---
+  window.addEventListener("load", function () {
     if (shouldAskAgain()) {
       document.getElementById("cookie-bar").style.display = "flex";
     }
+  });
 
-    document.getElementById("accept-cookies").addEventListener("click", function () {
-      localStorage.setItem("cookiesAccepted", Date.now().toString());
+  // --- Wire buttons ---
+  document.addEventListener("click", function (e) {
+    if (e.target.id === "accept-cookies") {
+      localStorage.setItem("cookiesAcceptedAt", Date.now().toString());
+      // GA4 consent -> granted
+      if (typeof gtag === "function") {
+        gtag('consent', 'update', { 'analytics_storage': 'granted' });
+      }
       document.getElementById("cookie-bar").style.display = "none";
-    });
+    }
 
-    document.getElementById("reject-cookies").addEventListener("click", function () {
+    if (e.target.id === "decline-cookies") {
+      // GA4 consent -> denied
+      if (typeof gtag === "function") {
+        gtag('consent', 'update', { 'analytics_storage': 'denied' });
+      }
       document.getElementById("cookie-bar").style.display = "none";
-    });
-  };
+    }
+  });
 </script>
+
 
 
 
@@ -1258,6 +1288,7 @@ function showInfo(title, description) {
   
 </body>
 </html>
+
 
 
 
