@@ -726,6 +726,14 @@ header img {
   max-height: 40px;
   margin-bottom: 0.5rem;
 }
+
+    .cookie-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 </style>
 
 
@@ -1209,42 +1217,61 @@ function showInfo(title, description) {
   });
 </script>
  
-
   <div class="cookie-bar" id="cookie-bar">
-  <img src="/assets/VuneCoinGoldmanWhite.png" alt="VuneCoin Logo" class="cookie-logo" />
+  <img src="/assets/img/VuneCoinGoldmanWhite.png" alt="VuneCoin Logo" class="cookie-logo" />
   <p>
     Diese Website verwendet Cookies, um dir das beste Nutzererlebnis zu bieten. 
-    Durch die Nutzung dieser Seite erklärst du dich damit einverstanden.
+    Durch die Nutzung dieser Seite erklärst du dich damit einverstanden oder kannst ablehnen.
   </p>
-  <button onclick="acceptCookies()">Okay</button>
+  <div class="cookie-buttons">
+    <button onclick="acceptCookies()">Okay</button>
+    <button onclick="declineCookies()">Ablehnen</button>
+  </div>
 </div>
+
 
 
   <script>
   function acceptCookies() {
-    localStorage.setItem("cookiesAccepted", Date.now());
-    document.getElementById("cookie-bar").style.display = "none";
+  localStorage.setItem("cookiesAccepted", Date.now()); // speichert Zeitpunkt
+  document.getElementById("cookie-bar").style.display = "none";
+  // Optional: Tracking aktivieren
+}
+
+function declineCookies() {
+  localStorage.setItem("cookiesAccepted", "declined:" + Date.now()); // speichert Ablehnung mit Zeitstempel
+  document.getElementById("cookie-bar").style.display = "none";
+  // Optional: Tracking deaktivieren
+}
+
+function shouldAskAgain() {
+  const stored = localStorage.getItem("cookiesAccepted");
+  if (!stored) return true;
+
+  let timestamp;
+
+  if (stored.startsWith("declined:")) {
+    timestamp = parseInt(stored.split(":")[1]);
+  } else {
+    timestamp = parseInt(stored);
   }
 
-  function shouldAskAgain() {
-    const lastAccepted = localStorage.getItem("cookiesAccepted");
-    if (!lastAccepted) return true;
+  const sixMonths = 1000 * 60 * 60 * 24 * 30 * 6;
+  return (Date.now() - timestamp) > sixMonths;
+}
 
-    const sixMonths = 1000 * 60 * 60 * 24 * 30 * 6;
-    return (Date.now() - parseInt(lastAccepted)) > sixMonths;
+window.onload = function () {
+  if (shouldAskAgain()) {
+    document.getElementById("cookie-bar").style.display = "flex";
   }
-
-  window.onload = function () {
-    if (shouldAskAgain()) {
-      document.getElementById("cookie-bar").style.display = "flex";
-    }
-  };
+};
 </script>
 
 
   
 </body>
 </html>
+
 
 
 
