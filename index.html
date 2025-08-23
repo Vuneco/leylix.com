@@ -171,28 +171,7 @@
   })();
 </script>
   
-<script>
-  .platform-image {
-  width: 100%;
-  max-width: 300px;
-  height: auto;
-  margin: 2rem auto;
-  opacity: 0;
-  transform: translateX(100px);
-  transition: opacity 1s ease, transform 1s ease;
-  cursor: pointer; /* ← Zeigt interaktive Fläche */
-  pointer-events: auto; /* ← WICHTIG: Klicks wieder erlauben */
-}
 
-
-.platform-image.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-
-  // KEIN gtag('config', ...) hier – das kommt erst nach Zustimmung durch Cookie-Banner
-</script>
 
   
   <!-- 🔥 SEO-Finalblock von Elion für Leylix -->
@@ -743,6 +722,24 @@ header img {
   flex-wrap: wrap;
 }
 
+    .platform-image {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  margin: 2rem auto;
+  opacity: 0;
+  transform: translateX(100px);
+  transition: opacity 1s ease, transform 1s ease;
+  cursor: pointer; /* ← Zeigt interaktive Fläche */
+  pointer-events: auto; /* ← WICHTIG: Klicks wieder erlauben */
+}
+
+
+.platform-image.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
   </style>
 </head>
 <body>
@@ -1277,6 +1274,7 @@ function showInfo(title, description) {
   
 </body>
 </html>
+
 
 
 
