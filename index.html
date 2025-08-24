@@ -760,6 +760,34 @@ header img {
   flex-wrap: wrap;
 }
 
+    @keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+#cookie-bar {
+  animation: slideUp 0.8s ease-out;
+}
+
+    #cookie-bar {
+  display: none;
+  transform: translateY(100%);
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+#cookie-bar.show-cookie-bar {
+  display: flex;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+
   </style>
 </head>
 <body>
@@ -1261,7 +1289,7 @@ function showInfo(title, description) {
   // --- Show banner if needed ---
   window.addEventListener("load", function () {
     if (shouldAskAgain()) {
-      document.getElementById("cookie-bar").style.display = "flex";
+      document.getElementById("cookie-bar").classList.add("show-cookie-bar");
     }
   });
 
@@ -1289,6 +1317,7 @@ function showInfo(title, description) {
   
 </body>
 </html>
+
 
 
 
