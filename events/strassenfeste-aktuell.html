@@ -461,20 +461,44 @@ img.responsive-img:hover {
   text-align: center;
 }
 
-#cookie-bar button {
-  background: #fff;
-  color: #000;
-  border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: all 0.3s ease;
+/* Basis-Button-Style (ohne gelbe Hover-Regel) */
+#cookie-bar button{
+  background:#fff;
+  color:#000;
+  border:none;
+  padding:0.6rem 1.2rem;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:bold;
+  transition:all .25s ease;
 }
 
-#cookie-bar button:hover {
-  background: #f9c900;
-  color: #000;
+/* ✅ Akzeptieren = Grün */
+#cookie-bar #accept-cookies{
+  background:#16a34a;  /* green-600 */
+  color:#fff;
+}
+#cookie-bar #accept-cookies:hover,
+#cookie-bar #accept-cookies:focus-visible{
+  background:#15803d;  /* green-700 */
+  color:#fff;
+}
+
+/* ✅ Ablehnen = Rot */
+#cookie-bar #decline-cookies{
+  background:#dc2626;  /* red-600 */
+  color:#fff;
+}
+#cookie-bar #decline-cookies:hover,
+#cookie-bar #decline-cookies:focus-visible{
+  background:#b91c1c;  /* red-700 */
+  color:#fff;
+}
+
+/* optional: Tastaturfokus sichtbarer */
+#cookie-bar button:focus-visible{
+  outline:2px solid #fff;
+  outline-offset:2px;
 }
 
 #cookie-logo {
