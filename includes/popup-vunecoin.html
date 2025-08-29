@@ -1,5 +1,10 @@
 <!-- VuneCoin Pop-Up -->
-<div id="vunePopup" style="display: flex; align-items: center; justify-content: center; position: fixed; inset: 0; background-color: rgba(0,0,0,0.6); z-index: 9999;">
+<div id="vunePopup" 
+     data-deadline="2025-09-30T23:59:59+02:00" 
+     style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:9999;">
+   <!-- Inhalt vom Popup -->
+</div>
+
   <div style="
   position: relative;
   background: white;
@@ -124,34 +129,28 @@
 </style>
 
 <script>
-  const targetDate = new Date("2025-09-30T23:59:59").getTime();
+  const popup = document.getElementById("vunePopup");
+  const deadlineStr = popup?.dataset?.deadline || "2025-09-30T23:59:59+02:00";
+  const targetDate = new Date(deadlineStr).getTime();
 
   const updateCountdown = () => {
-    const now = new Date().getTime();
+    const now = Date.now();
     const distance = targetDate - now;
+    const clamp = (v)=> (v < 0 ? 0 : v);
 
-    if (distance < 0) {
-      document.getElementById("days").innerText = "0";
-      document.getElementById("hours").innerText = "0";
-      document.getElementById("minutes").innerText = "0";
-      document.getElementById("seconds").innerText = "0";
-      return;
-    }
+    const days    = clamp(Math.floor(distance / (1000*60*60*24)));
+    const hours   = clamp(Math.floor((distance % (1000*60*60*24)) / (1000*60*60)));
+    const minutes = clamp(Math.floor((distance % (1000*60*60)) / (1000*60)));
+    const seconds = clamp(Math.floor((distance % (1000*60)) / 1000));
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    // Nur die Textwerte in den vorhandenen divs ändern
     document.getElementById("days").innerText = days;
     document.getElementById("hours").innerText = hours;
     document.getElementById("minutes").innerText = minutes;
     document.getElementById("seconds").innerText = seconds;
   };
 
-  setInterval(updateCountdown, 1000);
   updateCountdown();
+  setInterval(updateCountdown, 1000);
 </script>
 
    
