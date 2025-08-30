@@ -112,34 +112,98 @@
 
 <!-- Countdown Script: liest Deadline aus data-Attribut -->
 <script>
-  (function(){
+ <script>
+(function(){
   const root = document.getElementById('vunePopup');
   if (!root) return;
 
-  // ISO mit Z/Offset ODER epoch (sec/ms) erlaubt
-  const raw = (root.dataset.deadline || '').trim();
-  let target = NaN;
-  if (/^\d{10,13}$/.test(raw)) {
-    target = Number(raw.length === 13 ? raw : Number(raw) * 1000);
-  } else {
-    target = Date.parse(raw); // z.B. 2025-09-30T21:59:59Z (UTC)
+  const el = {
+    d: document.getElementById('days'),
+    h: document.getElementById('hours'),
+    m: document.getElementById('minutes'),
+    s: document.getElementById('seconds')
+  };
+
+  let timer = null;
+
+  function parseDeadline(raw) {
+    if (!raw) return NaN;
+    const s = String(raw).trim();
+
+    // Epoch: 13-stellig = ms, 10-stellig = s
+    if (/^\d{13}$/.test(s)) return Number(s);
+    if (/^\d{10}$/.test(s)) return Number(s) * 1000;
+
+    // Nur Datum → lokales Ende des Tages
+    if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return new Date(s + 'T23:59:59').getTime();
+
+    // ISO / sonstiges, inkl. "Z" oder Offset
+    const t = Date.parse(s);
+    return Number.isFinite(t) ? t : NaN;
   }
-  if (!Number.isFinite(target)) { console.error('[Countdown] Ungültige Deadline:', raw); return; }
 
-  const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
-  const clamp = v => v < 0 ? 0 : v;
+  function pad(n){ return String(n).padStart(2,'0'); }
 
-  function tick(){
-    const diff = target - Date.now();
-    const days    = clamp(Math.floor(diff / 86400000));
-    const hours   = clamp(Math.floor((diff % 86400000) / 3600000));
-    const minutes = clamp(Math.floor((diff % 3600000) / 60000));
-    const seconds = clamp(Math.floor((diff % 60000) / 1000));
-    set('days', days); set('hours', hours); set('minutes', minutes); set('seconds', seconds);
-    if (diff <= 0) clearInterval(timer);
+  function updateOnce(targetMs){
+    let diff = targetMs - Date.now();
+    if (diff < 0) diff = 0;
+
+    const D = Math.floor(diff / 86400000);
+    const H = Math.floor((diff % 86400000) / 3600000);
+    const M = Math.floor((diff % 3600000) / 60000);
+    const S = Math.floor((diff % 60000) / 1000);
+
+    if (el.d) el.d.textContent = String(D);
+    if (el.h) el.h.textContent = pad(H);
+    if (el.m) el.m.textContent = pad(M);
+    if (el.s) el.s.textContent = pad(S);
+
+    return diff > 0;
   }
 
-  tick();
-  const timer = setInterval(tick, 1000);
+  function stop(){ if (timer) { clearInterval(timer); timer = null; } }
+
+  function start(){
+    stop();
+    const raw = root.dataset.deadline || '';
+    const target = parseDeadline(raw);
+    if (!Number.isFinite(target)) {
+      console.error('[Countdown] Ungültige Deadline:', raw);
+      return;
+    }
+    // Initial
+    if (!updateOnce(target)) return;
+    // Tick
+    timer = setInterval(() => {
+      if (!updateOnce(target)) stop();
+    }, 1000);
+  }
+
+  // Beim Sichtbarwerden starten (falls z. B. via CSS/JS versteckt/angezeigt)
+  const visObs = new MutationObserver(() => {
+    const visible = window.getComputedStyle(root).display !== 'none';
+    if (visible && !timer) start();
+  });
+  visObs.observe(root, { attributes:true, attributeFilter:['style','class'] });
+
+  // Auf Änderungen an data-deadline reagieren
+  const attrObs = new MutationObserver((muts) => {
+    for (const m of muts) {
+      if (m.type === 'attributes' && m.attributeName === 'data-deadline') {
+        start();
+      }
+    }
+  });
+  attrObs.observe(root, { attributes:true });
+
+  // Direkt starten, wenn bereits sichtbar
+  if (window.getComputedStyle(root).display !== 'none') start();
+
+  // Praktischer Helper für dich:
+  window.setVuneDeadline = function(str){
+    root.dataset.deadline = str; // triggert automatisch start()
+  };
 })();
+</script>
+
 </script>
