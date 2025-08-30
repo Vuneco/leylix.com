@@ -117,35 +117,48 @@
   const root = document.getElementById('vunePopup');
   if (!root) return;
 
+  // Evtl. ältere Instanz stoppen (falls Seite das Script mehrfach lädt)
+  if (window.__VUNE_COUNTDOWN__) {
+    clearInterval(window.__VUNE_COUNTDOWN__.timer);
+  }
+  window.__VUNE_COUNTDOWN__ = { timer: null };
+
+  // Elemente
   const el = {
     d: document.getElementById('days'),
     h: document.getElementById('hours'),
     m: document.getElementById('minutes'),
-    s: document.getElementById('seconds')
+    s: document.getElementById('seconds'),
   };
 
-  let timer = null;
+  // Optional: Deadline via URL überschreiben (Test: ?deadline=2025-10-10T20:00:00+02:00)
+  const qs = new URLSearchParams(location.search);
+  const override = qs.get('deadline');
+  if (override) root.setAttribute('data-deadline', override);
 
   function parseDeadline(raw) {
     if (!raw) return NaN;
     const s = String(raw).trim();
-
-    // Epoch: 13-stellig = ms, 10-stellig = s
-    if (/^\d{13}$/.test(s)) return Number(s);
-    if (/^\d{10}$/.test(s)) return Number(s) * 1000;
-
-    // Nur Datum → lokales Ende des Tages
-    if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return new Date(s + 'T23:59:59').getTime();
-
-    // ISO / sonstiges, inkl. "Z" oder Offset
-    const t = Date.parse(s);
+    if (/^\d{13}$/.test(s)) return Number(s);         // epoch ms
+    if (/^\d{10}$/.test(s)) return Number(s) * 1000;  // epoch s
+    if (/^\d{4}-\d{2}-\d{2}$/.test(s)) {
+      // nur Datum -> 23:59:59 lokale Zeit
+      return new Date(s + 'T23:59:59').getTime();
+    }
+    const t = Date.parse(s); // ISO mit Z/Offset
     return Number.isFinite(t) ? t : NaN;
   }
 
   function pad(n){ return String(n).padStart(2,'0'); }
 
-  function updateOnce(targetMs){
-    let diff = targetMs - Date.now();
+  function tick() {
+    const raw = root.getAttribute('data-deadline') || '';
+    const target = parseDeadline(raw);
+    if (!Number.isFinite(target)) {
+      console.error('[Countdown] Ungültige Deadline:', raw);
+      return;
+    }
+    let diff = target - Date.now();
     if (diff < 0) diff = 0;
 
     const D = Math.floor(diff / 86400000);
@@ -157,52 +170,11 @@
     if (el.h) el.h.textContent = pad(H);
     if (el.m) el.m.textContent = pad(M);
     if (el.s) el.s.textContent = pad(S);
-
-    return diff > 0;
   }
 
-  function stop(){ if (timer) { clearInterval(timer); timer = null; } }
-
-  function start(){
-    stop();
-    const raw = root.dataset.deadline || '';
-    const target = parseDeadline(raw);
-    if (!Number.isFinite(target)) {
-      console.error('[Countdown] Ungültige Deadline:', raw);
-      return;
-    }
-    // Initial
-    if (!updateOnce(target)) return;
-    // Tick
-    timer = setInterval(() => {
-      if (!updateOnce(target)) stop();
-    }, 1000);
-  }
-
-  // Beim Sichtbarwerden starten (falls z. B. via CSS/JS versteckt/angezeigt)
-  const visObs = new MutationObserver(() => {
-    const visible = window.getComputedStyle(root).display !== 'none';
-    if (visible && !timer) start();
-  });
-  visObs.observe(root, { attributes:true, attributeFilter:['style','class'] });
-
-  // Auf Änderungen an data-deadline reagieren
-  const attrObs = new MutationObserver((muts) => {
-    for (const m of muts) {
-      if (m.type === 'attributes' && m.attributeName === 'data-deadline') {
-        start();
-      }
-    }
-  });
-  attrObs.observe(root, { attributes:true });
-
-  // Direkt starten, wenn bereits sichtbar
-  if (window.getComputedStyle(root).display !== 'none') start();
-
-  // Praktischer Helper für dich:
-  window.setVuneDeadline = function(str){
-    root.dataset.deadline = str; // triggert automatisch start()
-  };
+  // Start
+  tick();
+  window.__VUNE_COUNTDOWN__.timer = setInterval(tick, 1000);
 })();
 </script>
 
