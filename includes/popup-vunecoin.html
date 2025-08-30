@@ -99,6 +99,11 @@
 
 <!-- Styles (bereinigt; keine doppelten keyframes) -->
 <style>
+
+document.getElementById('vunePopup')
+        .setAttribute('data-deadline', '2025-10-10T20:00:00+02:00');
+document.getElementById('vunePopup').style.display = 'flex';
+     
   @keyframes pulseShadow {
     0% { box-shadow: 0 0 20px rgba(128,0,0,0.4); }
     50% { box-shadow: 0 0 50px rgba(128,0,0,0.9); }
