@@ -98,12 +98,9 @@
 </div>
 
 <!-- Styles (bereinigt; keine doppelten keyframes) -->
-<style>
 
-document.getElementById('vunePopup')
-        .setAttribute('data-deadline', '2025-10-10T20:00:00+02:00');
-document.getElementById('vunePopup').style.display = 'flex';
-     
+
+  <style>   
   @keyframes pulseShadow {
     0% { box-shadow: 0 0 20px rgba(128,0,0,0.4); }
     50% { box-shadow: 0 0 50px rgba(128,0,0,0.9); }
@@ -118,15 +115,19 @@ document.getElementById('vunePopup').style.display = 'flex';
 <!-- Countdown Script: liest Deadline aus data-Attribut -->
 
  <script>
-  function(){
+  <script>
+(function(){
   const root = document.getElementById('vunePopup');
   if (!root) return;
 
-  // Evtl. ältere Instanz stoppen (falls Seite das Script mehrfach lädt)
+  // Vorherige Instanz stoppen
   if (window.__VUNE_COUNTDOWN__) {
     clearInterval(window.__VUNE_COUNTDOWN__.timer);
   }
   window.__VUNE_COUNTDOWN__ = { timer: null };
+
+  // UI sichtbar machen (vorher stand das fälschlich im <style>)
+  root.style.display = 'flex';
 
   // Elemente
   const el = {
@@ -136,7 +137,7 @@ document.getElementById('vunePopup').style.display = 'flex';
     s: document.getElementById('seconds'),
   };
 
-  // Optional: Deadline via URL überschreiben (Test: ?deadline=2025-10-10T20:00:00+02:00)
+  // Deadline via URL überschreiben (?deadline=2025-10-10T20:00:00+02:00)
   const qs = new URLSearchParams(location.search);
   const override = qs.get('deadline');
   if (override) root.setAttribute('data-deadline', override);
@@ -147,8 +148,7 @@ document.getElementById('vunePopup').style.display = 'flex';
     if (/^\d{13}$/.test(s)) return Number(s);         // epoch ms
     if (/^\d{10}$/.test(s)) return Number(s) * 1000;  // epoch s
     if (/^\d{4}-\d{2}-\d{2}$/.test(s)) {
-      // nur Datum -> 23:59:59 lokale Zeit
-      return new Date(s + 'T23:59:59').getTime();
+      return new Date(s + 'T23:59:59').getTime();     // lokales Datum
     }
     const t = Date.parse(s); // ISO mit Z/Offset
     return Number.isFinite(t) ? t : NaN;
@@ -177,10 +177,19 @@ document.getElementById('vunePopup').style.display = 'flex';
     if (el.s) el.s.textContent = pad(S);
   }
 
+  // Öffentliche Helper-Funktion zum dynamischen Ändern
+  window.setVuneDeadline = function(newDeadline){
+    root.setAttribute('data-deadline', newDeadline);
+    tick(); // sofort aktualisieren
+  };
+
   // Start
   tick();
   window.__VUNE_COUNTDOWN__.timer = setInterval(tick, 1000);
 })();
 </script>
+
+
+
 
 
