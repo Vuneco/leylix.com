@@ -113,79 +113,72 @@
 </style>
 
 <!-- Countdown Script: liest Deadline aus data-Attribut -->
- 
-  <script>
+   
+<script>
 (function(){
-  var root = document.getElementById('vunePopup');
-  if (!root) return;
+  const ROOT_ID = 'vunePopup';
 
-  if (window.__VUNE_COUNTDOWN__) clearInterval(window.__VUNE_COUNTDOWN__.timer);
-  window.__VUNE_COUNTDOWN__ = { timer: null };
+  // Vorherige Instanz sauber stoppen (falls Script doppelt eingebunden wurde)
+  if (window.__VUNE_TIMER__) clearInterval(window.__VUNE_TIMER__);
+  window.__VUNE_TIMER__ = null;
 
-  var el = {
-    d: document.getElementById('days'),
-    h: document.getElementById('hours'),
-    m: document.getElementById('minutes'),
-    s: document.getElementById('seconds')
-  };
-
-  // ✨ robuste Parser-Funktion
   function parseDeadline(raw){
     if (raw == null) return NaN;
-    var s = String(raw).trim();
-    if (/^\d+$/.test(s)) {                    // nur Ziffern -> Epoch
-      if (s.length >= 12) return parseInt(s,10);         // Millisek.
-      if (s.length === 10) return parseInt(s,10) * 1000; // Sekunden
-    }
-    var t = Date.parse(s);                    // ISO versuchen
-    if (!isFinite(t)) {
-      // Fallback für ältere WebViews (YYYY-MM-DD[ T]HH:MM[:SS][Z|+HH[:MM]])
-      var m = s.match(/^(\d{4})-(\d{2})-(\d{2})[T\s](\d{2}):(\d{2})(?::(\d{2}))?(Z|([+-]\d{2}):?(\d{2}))?$/);
-      if (m) {
-        var Y=+m[1],Mo=+m[2]-1,D=+m[3],H=+m[4],Mi=+m[5],Se=m[6]?+m[6]:0;
-        var offH=0, offM=0;
-        if (m[7] && m[7]!=='Z') { offH = +m[8]; offM = +m[9]; }
-        t = Date.UTC(Y,Mo,D, H - offH, Mi - offM, Se);
-      }
-    }
-    return isFinite(t) ? t : NaN;
+    const s = String(raw).trim();
+    // Zahlen -> Epoch (ms oder s)
+    if (/^\d+$/.test(s)) return (s.length > 10 ? +s : (+s)*1000);
+    // ISO versuchen
+    const t = Date.parse(s);
+    return Number.isFinite(t) ? t : NaN;
   }
-
-  function pad(n){ return (n<10?'0':'')+n; }
+  const pad = n => String(n).padStart(2,'0');
 
   function tick(){
-    var target = parseDeadline(root.getAttribute('data-deadline') || '');
-    if (!isFinite(target)) return;
-    var diff = target - Date.now();
-    if (diff < 0) diff = 0;
-    var D = Math.floor(diff / 86400000);
-    var H = Math.floor((diff % 86400000)/3600000);
-    var M = Math.floor((diff % 3600000)/60000);
-    var S = Math.floor((diff % 60000)/1000);
-    if (el.d) el.d.textContent = String(D);
-    if (el.h) el.h.textContent = pad(H);
-    if (el.m) el.m.textContent = pad(M);
-    if (el.s) el.s.textContent = pad(S);
+    const root = document.getElementById(ROOT_ID);
+    if (!root) return; // Popup noch nicht im DOM
+    const target = parseDeadline(root.getAttribute('data-deadline') || '');
+    if (!Number.isFinite(target)) return;
+
+    let diff = Math.max(0, target - Date.now());
+    const D = Math.floor(diff / 86400000);
+    const H = Math.floor((diff % 86400000) / 3600000);
+    const M = Math.floor((diff % 3600000) / 60000);
+    const S = Math.floor((diff % 60000) / 1000);
+
+    const d = document.getElementById('days');
+    const h = document.getElementById('hours');
+    const m = document.getElementById('minutes');
+    const s = document.getElementById('seconds');
+
+    if (d) d.innerText = String(D);
+    if (h) h.innerText = pad(H);
+    if (m) m.innerText = pad(M);
+    if (s) s.innerText = pad(S);
   }
 
-  // öffentlich
+  // Öffentliches API zum Laufzeit-Ändern
   window.setVuneDeadline = function(newDeadline){
-    root.setAttribute('data-deadline', newDeadline);
-    tick();
+    const root = document.getElementById(ROOT_ID);
+    if (!root) return;
+    root.setAttribute('data-deadline', String(newDeadline));
+    tick(); // sofort aktualisieren
   };
 
-  tick();
-  window.__VUNE_COUNTDOWN__.timer = setInterval(tick, 1000);
+  // Erst NACH DOM ready starten (behebt "null.innerText")
+  document.addEventListener('DOMContentLoaded', function(){
+    tick();
+    window.__VUNE_TIMER__ = setInterval(tick, 1000);
+  });
 })();
 </script>
 
+
 <!-- 4) (optional) direkt danach neue Deadline setzen -->
-<script>
-  // Beispiel: +3 Tage ab jetzt
-  setVuneDeadline(String(Date.now() + 3*24*60*60*1000));
-  // oder absolute Zeit als ISO (wenn’s bei dir funktioniert):
-  // setVuneDeadline('2025-10-10T20:00:00+02:00');
+
+ <script>
+  setVuneDeadline('2025-10-10T20:00:00+02:00'); // MESZ
 </script>
+
 
 
 
