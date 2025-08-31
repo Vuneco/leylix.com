@@ -116,55 +116,62 @@
  
   <script>
 (function(){
-  const root = document.getElementById('vunePopup');
+  var root = document.getElementById('vunePopup');
   if (!root) return;
 
   if (window.__VUNE_COUNTDOWN__) clearInterval(window.__VUNE_COUNTDOWN__.timer);
   window.__VUNE_COUNTDOWN__ = { timer: null };
 
-  // optional sichtbar machen
-  root.style.display = 'flex';
-
-  const el = {
+  var el = {
     d: document.getElementById('days'),
     h: document.getElementById('hours'),
     m: document.getElementById('minutes'),
-    s: document.getElementById('seconds'),
+    s: document.getElementById('seconds')
   };
 
-  const qs = new URLSearchParams(location.search);
-  const override = qs.get('deadline');
-  if (override) root.setAttribute('data-deadline', override);
-
+  // ✨ robuste Parser-Funktion
   function parseDeadline(raw){
-    if (!raw) return NaN;
-    const s = String(raw).trim();
-    if (/^\d{13}$/.test(s)) return +s;               // epoch ms
-    if (/^\d{10}$/.test(s)) return +s * 1000;        // epoch s
-    if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return new Date(s + 'T23:59:59').getTime();
-    const t = Date.parse(s);
-    return Number.isFinite(t) ? t : NaN;
+    if (raw == null) return NaN;
+    var s = String(raw).trim();
+    if (/^\d+$/.test(s)) {                    // nur Ziffern -> Epoch
+      if (s.length >= 12) return parseInt(s,10);         // Millisek.
+      if (s.length === 10) return parseInt(s,10) * 1000; // Sekunden
+    }
+    var t = Date.parse(s);                    // ISO versuchen
+    if (!isFinite(t)) {
+      // Fallback für ältere WebViews (YYYY-MM-DD[ T]HH:MM[:SS][Z|+HH[:MM]])
+      var m = s.match(/^(\d{4})-(\d{2})-(\d{2})[T\s](\d{2}):(\d{2})(?::(\d{2}))?(Z|([+-]\d{2}):?(\d{2}))?$/);
+      if (m) {
+        var Y=+m[1],Mo=+m[2]-1,D=+m[3],H=+m[4],Mi=+m[5],Se=m[6]?+m[6]:0;
+        var offH=0, offM=0;
+        if (m[7] && m[7]!=='Z') { offH = +m[8]; offM = +m[9]; }
+        t = Date.UTC(Y,Mo,D, H - offH, Mi - offM, Se);
+      }
+    }
+    return isFinite(t) ? t : NaN;
   }
-  const pad = n => String(n).padStart(2,'0');
+
+  function pad(n){ return (n<10?'0':'')+n; }
 
   function tick(){
-    const target = parseDeadline(root.getAttribute('data-deadline') || '');
-    if (!Number.isFinite(target)) return;
-    let diff = Math.max(0, target - Date.now());
-    const D = Math.floor(diff / 86400000);
-    const H = Math.floor((diff % 86400000) / 3600000);
-    const M = Math.floor((diff % 3600000) / 60000);
-    const S = Math.floor((diff % 60000) / 1000);
+    var target = parseDeadline(root.getAttribute('data-deadline') || '');
+    if (!isFinite(target)) return;
+    var diff = target - Date.now();
+    if (diff < 0) diff = 0;
+    var D = Math.floor(diff / 86400000);
+    var H = Math.floor((diff % 86400000)/3600000);
+    var M = Math.floor((diff % 3600000)/60000);
+    var S = Math.floor((diff % 60000)/1000);
     if (el.d) el.d.textContent = String(D);
     if (el.h) el.h.textContent = pad(H);
     if (el.m) el.m.textContent = pad(M);
     if (el.s) el.s.textContent = pad(S);
   }
 
-  // öffentlich: Deadline zur Laufzeit setzen
+  // öffentlich
   window.setVuneDeadline = function(newDeadline){
     root.setAttribute('data-deadline', newDeadline);
-    tick(); // sofort updaten
+    tick();
   };
 
   tick();
@@ -174,8 +181,10 @@
 
 <!-- 4) (optional) direkt danach neue Deadline setzen -->
 <script>
-  // Beispiel: 10.10.2025, 20:00 Uhr in Deutschland (Sommerzeit = +02:00)
-  setVuneDeadline('2025-10-10T20:00:00+02:00');
+  // Beispiel: +3 Tage ab jetzt
+  setVuneDeadline(String(Date.now() + 3*24*60*60*1000));
+  // oder absolute Zeit als ISO (wenn’s bei dir funktioniert):
+  // setVuneDeadline('2025-10-10T20:00:00+02:00');
 </script>
 
 
