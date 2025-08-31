@@ -113,23 +113,18 @@
 </style>
 
 <!-- Countdown Script: liest Deadline aus data-Attribut -->
-
- <script>
+ 
   <script>
 (function(){
   const root = document.getElementById('vunePopup');
   if (!root) return;
 
-  // Vorherige Instanz stoppen
-  if (window.__VUNE_COUNTDOWN__) {
-    clearInterval(window.__VUNE_COUNTDOWN__.timer);
-  }
+  if (window.__VUNE_COUNTDOWN__) clearInterval(window.__VUNE_COUNTDOWN__.timer);
   window.__VUNE_COUNTDOWN__ = { timer: null };
 
-  // UI sichtbar machen (vorher stand das fälschlich im <style>)
+  // optional sichtbar machen
   root.style.display = 'flex';
 
-  // Elemente
   const el = {
     d: document.getElementById('days'),
     h: document.getElementById('hours'),
@@ -137,57 +132,56 @@
     s: document.getElementById('seconds'),
   };
 
-  // Deadline via URL überschreiben (?deadline=2025-10-10T20:00:00+02:00)
   const qs = new URLSearchParams(location.search);
   const override = qs.get('deadline');
   if (override) root.setAttribute('data-deadline', override);
 
-  function parseDeadline(raw) {
+  function parseDeadline(raw){
     if (!raw) return NaN;
     const s = String(raw).trim();
-    if (/^\d{13}$/.test(s)) return Number(s);         // epoch ms
-    if (/^\d{10}$/.test(s)) return Number(s) * 1000;  // epoch s
-    if (/^\d{4}-\d{2}-\d{2}$/.test(s)) {
-      return new Date(s + 'T23:59:59').getTime();     // lokales Datum
-    }
-    const t = Date.parse(s); // ISO mit Z/Offset
+    if (/^\d{13}$/.test(s)) return +s;               // epoch ms
+    if (/^\d{10}$/.test(s)) return +s * 1000;        // epoch s
+    if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return new Date(s + 'T23:59:59').getTime();
+    const t = Date.parse(s);
     return Number.isFinite(t) ? t : NaN;
   }
+  const pad = n => String(n).padStart(2,'0');
 
-  function pad(n){ return String(n).padStart(2,'0'); }
-
-  function tick() {
-    const raw = root.getAttribute('data-deadline') || '';
-    const target = parseDeadline(raw);
-    if (!Number.isFinite(target)) {
-      console.error('[Countdown] Ungültige Deadline:', raw);
-      return;
-    }
-    let diff = target - Date.now();
-    if (diff < 0) diff = 0;
-
+  function tick(){
+    const target = parseDeadline(root.getAttribute('data-deadline') || '');
+    if (!Number.isFinite(target)) return;
+    let diff = Math.max(0, target - Date.now());
     const D = Math.floor(diff / 86400000);
     const H = Math.floor((diff % 86400000) / 3600000);
     const M = Math.floor((diff % 3600000) / 60000);
     const S = Math.floor((diff % 60000) / 1000);
-
     if (el.d) el.d.textContent = String(D);
     if (el.h) el.h.textContent = pad(H);
     if (el.m) el.m.textContent = pad(M);
     if (el.s) el.s.textContent = pad(S);
   }
 
-  // Öffentliche Helper-Funktion zum dynamischen Ändern
+  // öffentlich: Deadline zur Laufzeit setzen
   window.setVuneDeadline = function(newDeadline){
     root.setAttribute('data-deadline', newDeadline);
-    tick(); // sofort aktualisieren
+    tick(); // sofort updaten
   };
 
-  // Start
   tick();
   window.__VUNE_COUNTDOWN__.timer = setInterval(tick, 1000);
 })();
 </script>
+
+<!-- 4) (optional) direkt danach neue Deadline setzen -->
+<script>
+  // Beispiel: 10.10.2025, 20:00 Uhr in Deutschland (Sommerzeit = +02:00)
+  setVuneDeadline('2025-10-10T20:00:00+02:00');
+</script>
+
+
+
+
+
 
 
 
