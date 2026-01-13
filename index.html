@@ -30,15 +30,12 @@
   "@type": "Organization",
   "name": "Vuneco GmbH",
   "url": "https://vuneco.com",
-  "founder": {
-    "@type": "Person",
-    "name": "Esat Vurcak"
-  },
-  "foundingDate": "2021-01-01",
-  "description": "Deutsches Softwareunternehmen mit Fokus auf Blockchain, Eventsysteme, Smart Contracts und KYC-Lösungen. Gründer von Leylix und VuneCoin. Digitale Innovation für Events, Sponsoring und Web3.",
-  "logo": "https://vuneco.com/assets/logo-vuneco-icon.png",
-  "url": "https://seo.leylix.com",
-  }
+  "logo": "https://images.leylix.com/vuneco.png",
+  "sameAs": [
+    "https://www.instagram.com/vuneco_gmbh",
+    "https://www.linkedin.com/company/vuneco"
+  ]
+}
 </script>
 
 <!-- 📱 App (Leylix) -->
@@ -68,83 +65,18 @@
 }
 </script>
 
-  <!-- 💸 VuneCoin -->
-<script type="application/ld+json">
+  <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Product",
   "name": "VuneCoin",
-  "alternateName": "VCNC",
-  "url": "https://ico.vunecoin.com",
-  "image": "https://vunecoin.com/assets/logo-vunecoin-icon.png",
-  "description": "VuneCoin ist die Kryptowährung für Leylix & Web3-Zahlungen. VuneCoin ist die native Währung für Transaktionen innerhalb des Leylix-Ökosystems. Entwickelt von Vuneco GmbH für Events, Sponsoring, Wallets & NFT-Tickets.",
+  "description": "VuneCoin ist eine Kryptowährung mit eigener Blockchain und Ökosystem.",
   "brand": {
     "@type": "Brand",
-    "name": "Vuneco GmbH",
-    "url": "https://vuneco.com"
+    "name": "VuneCoin"
   },
-  "manufacturer": {
-    "@type": "Organization",
-    "name": "Vuneco GmbH"
-  },
-  "offers": {
-    "@type": "Offer",
-    "url": "https://ico.vunecoin.com",
-    "priceCurrency": "USD",
-    "price": "16.73",
-    "priceValidUntil": "2025-12-31",
-    "availability": "https://schema.org/InStock",
-    "seller": {
-      "@type": "Organization",
-      "name": "Vuneco GmbH"
-    },
-    "shippingDetails": {
-      "@type": "OfferShippingDetails",
-      "shippingRate": {
-        "@type": "MonetaryAmount",
-        "value": "0",
-        "currency": "USD"
-      },
-      "deliveryTime": {
-        "@type": "ShippingDeliveryTime",
-        "handlingTime": {
-          "@type": "QuantitativeValue",
-          "minValue": 0,
-          "maxValue": 0,
-          "unitCode": "DAY"
-        }
-      }
-    },
-    "hasMerchantReturnPolicy": {
-      "@type": "MerchantReturnPolicy",
-      "applicableCountry": "DE",
-      "returnPolicyCategory": "https://schema.org/NoReturnsAccepted"
-    }
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5",
-    "reviewCount": "12"
-  },
-  "review": [
-    {
-      "@type": "Review",
-      "author": { "@type": "Person", "name": "Mex Silva" },
-      "datePublished": "2025-07-01",
-      "reviewBody": "Great cryptocurrency for the Leylix ecosystem.",
-      "name": "Excellent Coin",
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5",
-        "bestRating": "5"
-      }
-    }
-  ],
-  "isRelatedTo": {
-    "@type": "SoftwareApplication",
-    "name": "Leylix",
-    "url": "https://leylix.com"
-  }
+  "url": "https://vunecoin.com",
+  "image": "https://images.leylix.com/vunecoin.png"
 }
 </script>
 
@@ -175,9 +107,6 @@
 
   
   <!-- 🔥 SEO-Finalblock von Elion für Leylix -->
-
-<!-- Canonical Tag -->
-<link rel="canonical" href="https://seo.leylix.com/">
 
 
 <!-- Robots Indexierung -->
@@ -224,7 +153,7 @@
 <meta property="og:title" content="Leylix – Regionale Events & VuneCoin Tickets" />
 <meta property="og:description" content="Tickets, Events, Sponsoring & Krypto-Zahlung mit VuneCoin. Leylix digitalisiert deine Veranstaltung." />
 <meta property="og:image" content="https://seo.leylix.com/assets/BannerSEOLeylix.jpeg" />
-<meta property="og:url" content="https://www.leylix.com" />
+<meta property="og:url" content="https://seo.leylix.com" />
 <meta property="og:type" content="website" />
 
 <!-- ✅ Twitter Cards -->
@@ -760,12 +689,25 @@ header img {
   flex-wrap: wrap;
 }
 
+.seo-text{
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+  opacity: 0.95;
+}
+.seo-text h2, .seo-text h3{
+  margin-top: 18px;
+}
+.seo-text p, .seo-text li{
+  line-height: 1.55;
+}
+
 
   </style>
 </head>
 <body>
 
-<section style="display: none;">
+<section class="seo-text">
   <h2>Event-Plattformen Deutschland</h2>
   <p>
     Leylix ist eine moderne Eventplattform aus Deutschland – die beste Alternative zu Eventim, ticket.io und Eventbrite. Mit Leylix kannst du Veranstaltungen erstellen, Tickets verkaufen, Sponsoren finden, Locations buchen und dabei Krypto-Zahlungen mit VuneCoin nutzen. Leylix ist günstiger, schneller und intelligenter. Ob Event-App, Ticketverkauf oder Sponsoring-Plattform – Leylix verbindet alles in einem.
@@ -1295,6 +1237,8 @@ function showInfo(title, description) {
   
 </body>
 </html>
+
+
 
 
 
