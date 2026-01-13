@@ -868,6 +868,7 @@ header img {
     <div class="cta-buttons">
       <a href="#" onclick="openElionOverlay()">Elion AI fragen</a>
       </div>
+    
   </section>
 
 <section>
@@ -1230,6 +1231,30 @@ function showInfo(title, description) {
   });
 </script>
 
+  <script>
+function openElionChat() {
+  // 1) Chatbox finden
+  const chat = document.getElementById("elion-chat-box");
+  if (!chat) return;
+
+  // 2) Sichtbar machen (falls der Loader es versteckt)
+  chat.style.display = "block";
+  chat.style.visibility = "visible";
+  chat.style.opacity = "1";
+
+  // 3) Wenn der Loader eine "open" Klasse nutzt, geben wir ihm auch eine
+  chat.classList.add("open", "active", "visible");
+
+  // 4) Zum Chat scrollen (damit es sich nach "öffnet" anfühlt)
+  chat.scrollIntoView({ behavior: "smooth", block: "end" });
+
+  // 5) Optional: Fokus auf ein Input-Feld, falls vorhanden
+  const input = chat.querySelector("input, textarea");
+  if (input) input.focus();
+}
+</script>
+
+
   <!-- Elion AI Widget -->
 <div id="elion-avatar"></div>
 <div id="elion-label">Elion AI</div>
@@ -1238,6 +1263,7 @@ function showInfo(title, description) {
   
 </body>
 </html>
+
 
 
 
