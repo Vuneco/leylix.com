@@ -490,6 +490,34 @@ img.responsive-img:hover {
   flex-wrap: wrap;
 }
 
+/* 🎯 Hero Headline – zentriert & edel */
+.hero-headline {
+  text-align: center;
+  margin: 10px auto 28px auto;
+}
+
+/* Haupttitel */
+.hero-headline h1 {
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #4b2aad;
+  font-size: clamp(24px, 5vw, 34px);
+}
+
+/* Untertitel */
+.hero-subtitle {
+  margin-top: 8px;
+  font-size: clamp(14px, 4vw, 17px);
+  color: #666;
+  opacity: 0.9;
+}
+
+.hero-headline h1 {
+  background: linear-gradient(135deg, #4b2aad, #6d4cff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
     
   </style>
 
@@ -517,7 +545,10 @@ img.responsive-img:hover {
     </div>
   </div>
 
-  <h1>Leylix vs Eventim – Die faire Alternative für Eventplaner</h1>
+  <div class="hero-headline">
+  <h1>Leylix vs Eventim</h1>
+  <p class="hero-subtitle">Die faire Alternative für Eventplaner</p>
+</div>
 
   <p>Du willst Events veranstalten und suchst nach einer Plattform, die dich dabei ehrlich unterstützt? Dann wird es Zeit, Leylix mit den bekannten Ticketanbietern wie Eventim oder Ticket.io zu vergleichen.<br>
   In Allen Punkten ist Leylix besser, weil Leylix nachhaltigen Erfolg garantiert, wenn Leylix genutzt wird.</p>
@@ -866,3 +897,4 @@ function closeAbout() {
 
 </body>
 </html>
+
