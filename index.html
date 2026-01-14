@@ -1233,26 +1233,30 @@ function showInfo(title, description) {
 
   <script>
 function openElionChat() {
-  // 1) Chatbox finden
+  // 1) Wenn Elion über Avatar/Label toggelt: genau das auslösen
+  const avatar = document.getElementById("elion-avatar");
+  const label  = document.getElementById("elion-label");
+  if (avatar) avatar.click();
+  if (label)  label.click();
+
+  // 2) Fallback: Container sichtbar machen (falls Loader nur reinrendert)
   const chat = document.getElementById("elion-chat-box");
-  if (!chat) return;
+  if (chat) {
+    chat.style.display = "block";
+    chat.style.visibility = "visible";
+    chat.style.opacity = "1";
+    chat.classList.add("open", "active", "visible");
+    chat.scrollIntoView({ behavior: "smooth", block: "end" });
+  }
 
-  // 2) Sichtbar machen (falls der Loader es versteckt)
-  chat.style.display = "block";
-  chat.style.visibility = "visible";
-  chat.style.opacity = "1";
-
-  // 3) Wenn der Loader eine "open" Klasse nutzt, geben wir ihm auch eine
-  chat.classList.add("open", "active", "visible");
-
-  // 4) Zum Chat scrollen (damit es sich nach "öffnet" anfühlt)
-  chat.scrollIntoView({ behavior: "smooth", block: "end" });
-
-  // 5) Optional: Fokus auf ein Input-Feld, falls vorhanden
-  const input = chat.querySelector("input, textarea");
-  if (input) input.focus();
+  // 3) Mini-Delay: Falls der Loader erst noch init braucht, nochmal triggern
+  setTimeout(() => {
+    if (avatar) avatar.click();
+    if (label)  label.click();
+  }, 150);
 }
 </script>
+
 
 
   <!-- Elion AI Widget -->
@@ -1263,6 +1267,7 @@ function openElionChat() {
   
 </body>
 </html>
+
 
 
 
