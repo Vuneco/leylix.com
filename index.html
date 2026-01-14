@@ -864,9 +864,9 @@ header img {
   <!-- Elion Integration (Platzhalter) -->
   <section>
     <h2>Fragen? Elion hilft!</h2>
-    <p>Klick unten und chatte mit Elion, unserer intelligenten Event- und Blockchain-KI.</p>
+    <p>Klick unten rechts auf das Elion AI Avatar und chatte mit Elion, unserer intelligenten Event- und Blockchain-KI.</p>
     <div class="cta-buttons">
-      <a href="#" onclick="openElionChat(); return false;">Elion fragen</a>
+      
       </div>
     
   </section>
@@ -1231,34 +1231,7 @@ function showInfo(title, description) {
   });
 </script>
 
-  <script>
-function openElionChat() {
-  // 1) Wenn Elion über Avatar/Label toggelt: genau das auslösen
-  const avatar = document.getElementById("elion-avatar");
-  const label  = document.getElementById("elion-label");
-  if (avatar) avatar.click();
-  if (label)  label.click();
-
-  // 2) Fallback: Container sichtbar machen (falls Loader nur reinrendert)
-  const chat = document.getElementById("elion-chat-box");
-  if (chat) {
-    chat.style.display = "block";
-    chat.style.visibility = "visible";
-    chat.style.opacity = "1";
-    chat.classList.add("open", "active", "visible");
-    chat.scrollIntoView({ behavior: "smooth", block: "end" });
-  }
-
-  // 3) Mini-Delay: Falls der Loader erst noch init braucht, nochmal triggern
-  setTimeout(() => {
-    if (avatar) avatar.click();
-    if (label)  label.click();
-  }, 150);
-}
-</script>
-
-
-
+  
   <!-- Elion AI Widget -->
 <div id="elion-avatar"></div>
 <div id="elion-label">Elion AI</div>
@@ -1267,6 +1240,7 @@ function openElionChat() {
   
 </body>
 </html>
+
 
 
 
